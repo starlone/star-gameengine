@@ -3,19 +3,30 @@
 
 <head>
     <title>Star GameEngine</title>
-    <script>
-        var exports = {};
-    </script>
-    <script src="../dist/star-gameengine.cjs.development.js"></script>
-    <script>
-        var se = new StarEngine();
-        se.run();
-    </script>
+    <style>
+        #wrapper {
+            width: 800px;
+            height: 600px;
+            margin: 50px auto;
+            border: 1px solid black;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="wrapper">
+        <canvas id="canvas" width="800" height="600"></canvas>
+    </div>
 
-    Olá
+    <script>var exports = {};</script>
+    <script src="../dist/star-gameengine.cjs.development.js"></script>
+    <script>
+        var se = new StarEngine("canvas");
+        se.run();
+    </script>
 
 </body>
 

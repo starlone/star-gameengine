@@ -1,5 +1,3 @@
-export class StarEngine {
-  run(): void {
-    console.log('Start');
-  }
-}
+import { StarEngine } from "./starengine";
+
+export { StarEngine }
