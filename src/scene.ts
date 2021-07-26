@@ -1,8 +1,13 @@
+import { GameObject } from "./gameobject";
+
 export class Scene {
-    objs = [];
+    objs: GameObject[] = [];
 
     render(ctx: CanvasRenderingContext2D) {
-        ctx.fillStyle = 'black';
-        ctx.fillRect(0, 0, 200, 200);
+        this.objs.forEach(obj => obj.render(ctx));
+    }
+
+    add(obj: GameObject) {
+        this.objs.push(obj);
     }
 }

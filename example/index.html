@@ -25,6 +25,14 @@
     <script src="../dist/star-gameengine.cjs.development.js"></script>
     <script>
         var se = new StarEngine("canvas");
+        var scene = se.getScene();
+
+        var obj1 = new GameObject("obj1", 10, 10);
+        scene.add(obj1);
+
+        var obj2 = new GameObject("obj2", 80, 80);
+        scene.add(obj2);
+
         se.run();
     </script>
 
