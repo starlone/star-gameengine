@@ -10,6 +10,7 @@
             margin: 50px auto;
             border: 1px solid black;
         }
+
         canvas {
             border: 1px solid black;
         }
@@ -27,10 +28,14 @@
         var se = new StarEngine("canvas");
         var scene = se.getScene();
 
-        var obj1 = new GameObject("obj1", 10, 10);
+        var obj1 = Factory.rect({
+            'name': 'obj1', 'x': 30, 'y': 30, 'w': 30, 'h': 30
+        });
         scene.add(obj1);
 
-        var obj2 = new GameObject("obj2", 80, 80);
+        var obj2 = Factory.rect({
+            'name': 'obj1', 'x': 70, 'y': 70, 'w': 30, 'h': 30
+        });
         scene.add(obj2);
 
         se.run();

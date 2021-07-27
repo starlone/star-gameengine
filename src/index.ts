@@ -1,4 +1,5 @@
-import { StarEngine } from "./starengine";
+import { Factory } from "./factory";
 import { GameObject } from "./gameobject";
+import { StarEngine } from "./starengine";
 
-export { StarEngine, GameObject }
+export { StarEngine, GameObject, Factory };
