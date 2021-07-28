@@ -21,7 +21,7 @@ export class ViewPort {
       throw new Error("Element don't have the getContext");
     }
     this.ctx = this.element.getContext('2d');
-    
+
     window.addEventListener('resize', () => this.updateSize());
     this.updateSize();
   }
@@ -37,7 +37,17 @@ export class ViewPort {
     this.element.height = height;
   }
 
+  clear() {
+    this.ctx.clearRect(
+      0,
+      0,
+      this.element.width,
+      this.element.height
+    );
+  }
+
   render(scene: Scene) {
+    this.clear();
     scene.render(this.ctx);
   }
 }

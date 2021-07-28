@@ -1,3 +1,4 @@
+import { Joystick } from "./joystick";
 import { Runner } from "./runner";
 import { Scene } from "./scene";
 import { ViewPort } from "./viewport";
@@ -7,6 +8,7 @@ export class StarEngine {
   private runner = new Runner();
   private scene = new Scene();
   private viewport?: ViewPort;
+  private joystick = new Joystick();
 
   constructor(private elementID: string, scene?: Scene) {
     if (scene) {
@@ -28,5 +30,10 @@ export class StarEngine {
 
   update(delta: number, correction: number) {
     this.scene.update(delta, correction);
+    this.viewport?.render(this.scene);
+  }
+
+  getJoystick() {
+    return this.joystick;
   }
 }

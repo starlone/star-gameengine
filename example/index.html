@@ -32,13 +32,17 @@
             'name': 'obj1', 'x': 30, 'y': 30, 'w': 30, 'h': 30
         });
         scene.add(obj1);
+        var script = new FreeMoveScript(obj1, se.getJoystick(), 1);
+        obj1.addScript(script);
 
         var obj2 = Factory.rect({
             'name': 'obj1', 'x': 70, 'y': 70, 'w': 30, 'h': 30
         });
         scene.add(obj2);
 
-        se.run();
+        new KeyboardHandler(se.getJoystick());
+
+        se.start();
     </script>
 
 </body>
