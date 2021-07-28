@@ -10,4 +10,8 @@ export class Scene {
     add(obj: GameObject) {
         this.objs.push(obj);
     }
+
+    update(delta: number, correction: number) {
+        this.objs.forEach(obj => obj.update(delta, correction));
+    }
 }

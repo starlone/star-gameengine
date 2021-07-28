@@ -1,10 +1,12 @@
+import { Runner } from "./runner";
 import { Scene } from "./scene";
 import { ViewPort } from "./viewport";
 
 export class StarEngine {
 
+  private runner = new Runner();
+  private scene = new Scene();
   private viewport?: ViewPort;
-  private scene: Scene = new Scene();
 
   constructor(private elementID: string, scene?: Scene) {
     if (scene) {
@@ -16,12 +18,15 @@ export class StarEngine {
     return this.scene;
   }
 
-  run(): void {
+  start(): void {
     if (!this.viewport) {
       this.viewport = new ViewPort(this.elementID);
     }
-    console.log(this.viewport)
-    console.log('Start');
-    this.viewport.render(this.scene);
+
+    this.runner.start(this);
+  }
+
+  update(delta: number, correction: number) {
+    this.scene.update(delta, correction);
   }
 }

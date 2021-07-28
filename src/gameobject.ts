@@ -27,4 +27,9 @@ export class GameObject {
         // Reset
         ctx.translate(-pos.x, -pos.y);
     }
+
+    update(delta: number, correction: number): void {
+        console.log(delta);
+        console.log(correction);
+    }
 }

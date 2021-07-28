@@ -39,6 +39,5 @@ export class ViewPort {
 
   render(scene: Scene) {
     scene.render(this.ctx);
-    console.log(scene);
   }
 }
