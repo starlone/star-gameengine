@@ -1,3 +1,4 @@
+import { Extent } from "./extent";
 import { Scene } from "./scene";
 
 export class ViewPort {
@@ -38,16 +39,16 @@ export class ViewPort {
   }
 
   clear() {
-    this.ctx.clearRect(
-      0,
-      0,
-      this.element.width,
-      this.element.height
-    );
+    const extent = this.getExtentView();
+    this.ctx.clearRect(extent.x, extent.y, extent.width, extent.height);
   }
 
   render(scene: Scene) {
     this.clear();
-    scene.render(this.ctx);
+    scene.render(this.ctx, this.getExtentView());
+  }
+
+  getExtentView(): Extent {
+    return new Extent(0, 0, this.element.width, this.element.height);
   }
 }
