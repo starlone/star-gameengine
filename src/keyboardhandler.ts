@@ -15,21 +15,23 @@ export class KeyboardHandler {
     }
 
     keydown(key: string) {
-        if (key === 'ArrowLeft') { // Left
+        key = key.toLowerCase();
+        if (['arrowleft', 'a'].includes(key)) { // Left
             this.joy.setAxis('horizontal', -1);
-        } else if (key === 'ArrowRight') { // 'right'
+        } else if (['arrowright', 'd'].includes(key)) { // 'right'
             this.joy.setAxis('horizontal', 1);
-        } else if (key === 'ArrowUp') { // Up
+        } else if (['arrowup', 'w'].includes(key)) { // Up
             this.joy.setAxis('vertical', -1);
-        } else if (key === 'ArrowDown') { // 'Down'
+        } else if (['arrowdown', 's'].includes(key)) { // 'Down'
             this.joy.setAxis('vertical', 1);
         }
     }
 
     keyup(key: string) {
-        if (key === 'ArrowLeft' || key === 'ArrowRight') {
+        key = key.toLowerCase();
+        if (['arrowleft', 'arrowright', 'a', 'd'].includes(key)) {
             this.joy.setAxis('horizontal', 0);
-        } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+        } else if (['arrowup', 'arrowdown', 'w', 's'].includes(key)) {
             this.joy.setAxis('vertical', 0);
         }
     }
