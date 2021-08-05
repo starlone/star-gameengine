@@ -4,12 +4,10 @@ import { Point } from "../point";
 import { Renderer } from "./renderer";
 
 export class MeshRenderer extends Renderer {
-    parent?: GameObject;
     color: string = 'blue';
     fillStyle: string = 'black';
     strokeStyle: string = 'solid';
     lineWidth: number = 1;
-
 
     constructor(parent: GameObject, options: any = []) {
         super(parent);
@@ -20,7 +18,6 @@ export class MeshRenderer extends Renderer {
     }
 
     render(c: CanvasRenderingContext2D, extent: Extent): void {
-
         if (!this.parent || !this.parent.vertices || !this.parent.vertices.length) {
             console.log('Problema no render do objeto', this.parent);
             console.log('Extent', extent);

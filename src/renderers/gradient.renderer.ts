@@ -1,15 +1,12 @@
 import { Extent } from "../extent";
-import { GameObject } from "../gameobject";
-import { Scene } from "../scene";
 import { Renderer } from "./renderer";
 
 export class GradientRenderer extends Renderer {
-
     color1: string = '#004CB3';
     color2: string = '#8ED6FF';
 
-    constructor(parent: GameObject | Scene, options: any = []) {
-        super(parent);
+    constructor(options: any = []) {
+        super();
         this.color1 = options.color || this.color1;
         this.color2 = options.color || this.color2;
     }

@@ -1,11 +1,10 @@
 import { Extent } from "../extent";
 import { GameObject } from "../gameobject";
-import { Scene } from "../scene";
 
 export class Renderer {
-    parent?: GameObject | Scene;
+    parent?: GameObject;
 
-    constructor(parent: GameObject | Scene) {
+    constructor(parent?: GameObject) {
         this.parent = parent;
     }
 
