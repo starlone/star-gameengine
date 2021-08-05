@@ -15,7 +15,8 @@ export class GameObject {
         this.name = name;
         this.position.x = x;
         this.position.y = y;
-        this.renderer = options.renderer || new MeshRenderer(this);
+        this.renderer = options.renderer || new MeshRenderer();
+        this.renderer?.setParent(this);
     }
 
     render(ctx: CanvasRenderingContext2D, extent: Extent): void {

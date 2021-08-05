@@ -1,5 +1,4 @@
 import { Extent } from "../extent";
-import { GameObject } from "../gameobject";
 import { Point } from "../point";
 import { Renderer } from "./renderer";
 
@@ -9,8 +8,8 @@ export class MeshRenderer extends Renderer {
     strokeStyle: string = 'solid';
     lineWidth: number = 1;
 
-    constructor(parent: GameObject, options: any = []) {
-        super(parent);
+    constructor(options: any = []) {
+        super();
         this.color = options.color || this.color;
         this.fillStyle = options.fillStyle || this.fillStyle;
         this.lineWidth = options.lineWidth || this.lineWidth;

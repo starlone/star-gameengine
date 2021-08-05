@@ -40,16 +40,16 @@
         var scene = se.getScene();
 
         var obj1 = Factory.rect({
-            'name': 'obj1', 'x': 30, 'y': 30, 'w': 30, 'h': 30
+            'name': 'obj1', 'x': 300, 'y': 30, 'w': 30, 'h': 30, 'color': 'green'
         });
         scene.add(obj1);
         var script = new FreeMoveScript(obj1, se.getJoystick(), 1);
         obj1.addScript(script);
 
-        var obj2 = Factory.rect({
-            'name': 'obj1', 'x': 70, 'y': 70, 'w': 30, 'h': 30
+        var terrain = Factory.rect({
+            'name': 'terrain', 'x': 500, 'y': 500, 'w': 800, 'h': 30
         });
-        scene.add(obj2);
+        scene.add(terrain);
 
         new KeyboardHandler(se.getJoystick());
 

@@ -4,7 +4,7 @@ import { GameObject } from "../gameobject";
 export class Renderer {
     parent?: GameObject;
 
-    constructor(parent?: GameObject) {
+    setParent(parent: GameObject) {
         this.parent = parent;
     }
 
