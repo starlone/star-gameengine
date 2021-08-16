@@ -1,15 +1,12 @@
 import { Extent } from "../extent";
 import { GameObject } from "../gameobject";
 
-export class Renderer {
+export abstract class Renderer {
     parent?: GameObject;
 
     setParent(parent: GameObject) {
         this.parent = parent;
     }
 
-    render(ctx: CanvasRenderingContext2D, extent: Extent): void {
-        console.log(ctx);
-        console.log(extent);
-    }
+    abstract render(ctx: CanvasRenderingContext2D, extent: Extent): void;
 }

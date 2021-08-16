@@ -2,6 +2,7 @@ import { Extent } from "./extent";
 import { Point } from "./point";
 import { MeshRenderer } from "./renderers/mesh.renderer";
 import { Renderer } from "./renderers/renderer";
+import { RigidBody } from "./physicsengine/rigidbody";
 import { Script } from "./scripts/script";
 
 export class GameObject {
@@ -10,6 +11,7 @@ export class GameObject {
     vertices: Point[] = [];
     renderer?: Renderer;
     scripts: Script[] = [];
+    rigidBody?: RigidBody;
 
     constructor(name: string, x: number, y: number, options: any = {}) {
         this.name = name;
@@ -17,6 +19,9 @@ export class GameObject {
         this.position.y = y;
         this.renderer = options.renderer || new MeshRenderer();
         this.renderer?.setParent(this);
+
+        const hasRigidBody = options.hasRigidBody || true;
+        this.rigidBody = hasRigidBody ? new RigidBody() : undefined;
     }
 
     render(ctx: CanvasRenderingContext2D, extent: Extent): void {
