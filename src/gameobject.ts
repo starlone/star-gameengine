@@ -1,8 +1,8 @@
 import { Extent } from "./extent";
+import { RigidBody } from "./physicsengine/rigidbody";
 import { Point } from "./point";
 import { MeshRenderer } from "./renderers/mesh.renderer";
 import { Renderer } from "./renderers/renderer";
-import { RigidBody } from "./physicsengine/rigidbody";
 import { Script } from "./scripts/script";
 
 export class GameObject {
@@ -11,7 +11,8 @@ export class GameObject {
     vertices: Point[] = [];
     renderer?: Renderer;
     scripts: Script[] = [];
-    rigidBody?: RigidBody;
+    rigidBody: RigidBody = new RigidBody(this);
+    static = false;
 
     constructor(name: string, x: number, y: number, options: any = {}) {
         this.name = name;
@@ -19,9 +20,10 @@ export class GameObject {
         this.position.y = y;
         this.renderer = options.renderer || new MeshRenderer();
         this.renderer?.setParent(this);
+        this.static = options.static || this.static;
 
-        const hasRigidBody = options.hasRigidBody || true;
-        this.rigidBody = hasRigidBody ? new RigidBody() : undefined;
+        // const hasRigidBody = options.hasRigidBody || true;
+        // this.rigidBody = hasRigidBody ? new RigidBody() : undefined;
     }
 
     render(ctx: CanvasRenderingContext2D, extent: Extent): void {
@@ -38,11 +40,16 @@ export class GameObject {
     }
 
     update(delta: number, correction: number): void {
+        this.rigidBody.update();
         this.scripts.forEach(script => script.update(delta, correction));
     }
 
     addScript(script: Script) {
         this.scripts.push(script);
+    }
+
+    isStatic(): boolean {
+        return this.static;
     }
 
 }

@@ -1,4 +1,5 @@
-import { Engine, World } from "matter-js";
+import { Body, Common, Engine, World } from "matter-js";
+import { GameObject } from "../gameobject";
 import { PhysicsEngine } from "./physicsengine";
 
 export class MatterEngine implements PhysicsEngine {
@@ -8,8 +9,25 @@ export class MatterEngine implements PhysicsEngine {
         Engine.update(this.engine, delta, correction);
     }
 
-    addBody(body: any) {
-        World.add(this.engine.world, body);
+    createBody(obj: GameObject, options: any) {
+        options = options || {};
+        const name = options.name || obj.name;
+
+        if (options.canRotate === undefined) {
+            options.canRotate = true;
+        }
+
+        const body = {
+            label: name,
+            position: { x: obj.position.x, y: obj.position.y },
+            vertices: obj.vertices,
+            // angle: obj.angle,
+            isStatic: obj.isStatic()
+        };
+        const newbody = Body.create(Common.extend(body, options));
+        World.add(this.engine.world, newbody);
+        return newbody;
+        // this.updateRealPosition();
     }
 
     removeBody(body: any) {

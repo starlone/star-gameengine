@@ -11,13 +11,15 @@ export class Factory {
         var w = opt.w || 10;
         var h = opt.h || 10;
 
+        const isStatic = opt.static || false;
 
         const rend = new MeshRenderer({
             color: opt.color || 'blue'
         });
 
         const obj = new GameObject(name, x, y, {
-            renderer: rend
+            renderer: rend,
+            static: isStatic
         });
 
         obj.vertices.push(new Point(-w / 2, -h / 2));
