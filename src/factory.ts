@@ -12,7 +12,8 @@ export class Factory {
         var w = opt.w || 10;
         var h = opt.h || 10;
 
-        const isStatic = opt.static || false;
+        const isStatic = opt.static != undefined ? opt.static : false;
+        const hasRigidBody = opt.hasRigidBody != undefined ? opt.hasRigidBody : true;
 
         const rend = new MeshRenderer({
             color: opt.color || 'blue'
@@ -20,7 +21,8 @@ export class Factory {
 
         const obj = new GameObject(name, x, y, {
             renderer: rend,
-            static: isStatic
+            static: isStatic,
+            hasRigidBody: hasRigidBody
         });
 
         obj.vertices.push(new Point(-w / 2, -h / 2));

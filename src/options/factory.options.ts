@@ -6,5 +6,7 @@ export interface IFactoryOptions {
     h?: number;
 
     static?: boolean;
+    hasRigidBody?: boolean
     color?: string;
+
 }

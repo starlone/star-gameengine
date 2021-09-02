@@ -16,9 +16,11 @@ export class Scene {
     }
 
     add(obj: GameObject) {
-        const body = this.physicEngine.createBody(obj, {});
-        obj.rigidBody.body = body;
-        obj.rigidBody.physicEngine = this.physicEngine;
+        if (obj.rigidBody) {
+            const body = this.physicEngine.createBody(obj, {});
+            obj.rigidBody.body = body;
+            obj.rigidBody.physicEngine = this.physicEngine;
+        }
         this.objs.push(obj);
     }
 

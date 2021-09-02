@@ -1,4 +1,5 @@
 import { Extent } from "./extent";
+import { IGameObjectOptions } from "./options/gameobject.options";
 import { RigidBody } from "./physicsengine/rigidbody";
 import { Point } from "./point";
 import { MeshRenderer } from "./renderers/mesh.renderer";
@@ -12,10 +13,10 @@ export class GameObject {
     vertices: Point[] = [];
     renderer?: Renderer;
     scripts: Script[] = [];
-    rigidBody: RigidBody = new RigidBody(this);
+    rigidBody?: RigidBody;
     static = false;
 
-    constructor(name: string, x: number, y: number, options: any = {}) {
+    constructor(name: string, x: number, y: number, options: IGameObjectOptions) {
         this.name = name;
         this.position.x = x;
         this.position.y = y;
@@ -25,8 +26,8 @@ export class GameObject {
         this.renderer = options.renderer || new MeshRenderer();
         this.renderer?.setParent(this);
 
-        // const hasRigidBody = options.hasRigidBody || true;
-        // this.rigidBody = hasRigidBody ? new RigidBody() : undefined;
+        const hasRigidBody = options.hasRigidBody != undefined ? options.hasRigidBody : true;
+        this.rigidBody = hasRigidBody ? new RigidBody(this) : undefined;
     }
 
     render(ctx: CanvasRenderingContext2D, extent: Extent): void {
@@ -45,7 +46,8 @@ export class GameObject {
     }
 
     update(delta: number, correction: number): void {
-        this.rigidBody.update();
+        if (this.rigidBody)
+            this.rigidBody.update();
         this.scripts.forEach(script => script.update(delta, correction));
     }
 
