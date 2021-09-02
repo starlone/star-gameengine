@@ -1,8 +1,9 @@
-import { Body, Common, Engine, World } from "matter-js";
+import Matter, { Body, Common, Engine, World } from "matter-js";
 import { GameObject } from "../gameobject";
 import { PhysicsEngine } from "./physicsengine";
 
 export class MatterEngine implements PhysicsEngine {
+
     engine = Engine.create();
 
     update(delta: number, correction: number) {
@@ -21,7 +22,7 @@ export class MatterEngine implements PhysicsEngine {
             label: name,
             position: { x: obj.position.x, y: obj.position.y },
             vertices: obj.vertices,
-            // angle: obj.angle,
+            angle: obj.angle,
             isStatic: obj.isStatic()
         };
         const newbody = Body.create(Common.extend(body, options));
@@ -32,6 +33,11 @@ export class MatterEngine implements PhysicsEngine {
 
     removeBody(body: any) {
         World.remove(this.engine.world, body);
+    }
+
+    setVelocity(body: any, velocity: { x: number; y: any; }) {
+        Matter.Sleeping.set(body, false); // Wake up Object
+        Matter.Body.setVelocity(body, velocity);
     }
 
 }

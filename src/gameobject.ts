@@ -8,6 +8,7 @@ import { Script } from "./scripts/script";
 export class GameObject {
     name: string = "";
     position: Point = new Point(0, 0);
+    angle = 0;
     vertices: Point[] = [];
     renderer?: Renderer;
     scripts: Script[] = [];
@@ -18,9 +19,11 @@ export class GameObject {
         this.name = name;
         this.position.x = x;
         this.position.y = y;
+        this.angle = options.angle || this.angle;
+        this.static = options.static || this.static;
+
         this.renderer = options.renderer || new MeshRenderer();
         this.renderer?.setParent(this);
-        this.static = options.static || this.static;
 
         // const hasRigidBody = options.hasRigidBody || true;
         // this.rigidBody = hasRigidBody ? new RigidBody() : undefined;
@@ -30,12 +33,14 @@ export class GameObject {
         var pos = this.position;
 
         ctx.translate(pos.x, pos.y);
+        ctx.rotate(this.angle);
 
         if (this.renderer) {
             this.renderer.render(ctx, extent);
         }
 
         // Reset
+        ctx.rotate(-this.angle);
         ctx.translate(-pos.x, -pos.y);
     }
 

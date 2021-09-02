@@ -1,9 +1,10 @@
 import { GameObject } from "./gameobject";
+import { IFactoryOptions } from "./options/factory.options";
 import { Point } from "./point";
 import { MeshRenderer } from "./renderers/mesh.renderer";
 
 export class Factory {
-    static rect(opt: any = {}) {
+    static rect(opt: IFactoryOptions) {
         const name = opt.name || '';
 
         var x = opt.x || 0;

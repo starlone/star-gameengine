@@ -6,4 +6,6 @@ export interface PhysicsEngine {
     removeBody(body: any): void;
 
     createBody(obj: GameObject, options: any): any;
+
+    setVelocity(body: any, velocity: { x: number; y: any; }): void;
 }
