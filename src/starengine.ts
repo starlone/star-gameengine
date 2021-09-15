@@ -28,8 +28,27 @@ export class StarEngine {
     this.runner.start(this);
   }
 
+  stop(): void {
+    this.runner.stop();
+  }
+
+  enable() {
+    this.runner.enable();
+  }
+
+  disable() {
+    this.runner.disable();
+  }
+
+  isEnabled(): boolean {
+    return this.runner.isEnabled();
+  }
+
   update(delta: number, correction: number) {
     this.scene.update(delta, correction);
+  }
+
+  render() {
     this.viewport?.render(this.scene);
   }
 

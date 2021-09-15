@@ -39,6 +39,7 @@ export class Runner {
             if (time && self.enabled) {
                 self.tick(engine, time);
             }
+            engine.render();
         })();
 
         return this;
@@ -50,6 +51,18 @@ export class Runner {
 
     start(engine: any) {
         this.run(engine);
+    }
+
+    enable() {
+        this.enabled = true;
+    }
+
+    disable() {
+        this.enabled = false;
+    }
+
+    isEnabled(): boolean {
+        return this.enabled;
     }
 
     tick(engine: StarEngine, time: number) {
