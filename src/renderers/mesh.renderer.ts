@@ -8,7 +8,7 @@ export class MeshRenderer extends Renderer {
     strokeStyle: string = 'solid';
     lineWidth: number = 1;
 
-    constructor(options: any = []) {
+    constructor(options: any = {}) {
         super();
         this.color = options.color || this.color;
         this.fillStyle = options.fillStyle || this.fillStyle;
@@ -44,5 +44,14 @@ export class MeshRenderer extends Renderer {
 
         c.fill();
 
+    }
+
+    clone(): Renderer {
+        return new MeshRenderer({
+            color: this.color,
+            fillStyle: this.fillStyle,
+            lineWidth: this.lineWidth,
+            strokeStyle: this.strokeStyle
+        });
     }
 }

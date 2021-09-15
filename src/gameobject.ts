@@ -59,4 +59,15 @@ export class GameObject {
         return this.static;
     }
 
+    clone() {
+        const options = {
+            angle: this.angle,
+            static: this.static,
+            renderer: this.renderer?.clone()
+        }
+        const obj = new GameObject(this.name, this.position.x, this.position.y, options);
+        obj.vertices = this.vertices.map(point => point.clone());
+        return obj;
+    }
+
 }

@@ -18,4 +18,11 @@ export class GradientRenderer extends Renderer {
         c.fillStyle = grd;
         c.fillRect(extent.x, extent.y, extent.width, extent.height);
     }
+
+    clone(): Renderer {
+        return new GradientRenderer({
+            color1: this.color1,
+            color2: this.color2
+        });
+    }
 }

@@ -28,4 +28,13 @@ export class Scene {
         this.physicEngine.update(delta, correction);
         this.objs.forEach(obj => obj.update(delta, correction));
     }
+
+    clone(): Scene {
+        const newscene = new Scene();
+        for (const obj of this.objs) {
+            const clone = obj.clone();
+            newscene.add(clone);
+        }
+        return newscene;
+    }
 }

@@ -18,7 +18,12 @@ export class ViewPort {
 
     this.element = this.element as HTMLCanvasElement;
 
+    if(!this.element) {
+      throw new Error("Element canvas not found");
+    }
+
     if (!this.element.getContext) {
+      console.log(this.element);
       throw new Error("Element don't have the getContext");
     }
     this.ctx = this.element.getContext('2d');
