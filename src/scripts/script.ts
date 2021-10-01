@@ -1,12 +1,11 @@
-import { GameObject } from "../gameobject";
+import { GameObject } from '../gameobject';
 
 export abstract class Script {
-    parent: GameObject;
+  parent: GameObject;
 
-    constructor(parent: GameObject) {
-        this.parent = parent;
-    }
+  constructor(parent: GameObject) {
+    this.parent = parent;
+  }
 
-    abstract update(delta: number, correction: number): void;
-
+  abstract update(delta: number, correction: number): void;
 }

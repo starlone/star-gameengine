@@ -1,10 +1,9 @@
-import { Joystick } from "./joystick";
-import { Runner } from "./runner";
-import { Scene } from "./scene";
-import { ViewPort } from "./viewport";
+import { Joystick } from './joystick';
+import { Runner } from './runner';
+import { Scene } from './scene';
+import { ViewPort } from './viewport';
 
 export class StarEngine {
-
   private runner = new Runner();
   private scene = new Scene();
   private viewport?: ViewPort;

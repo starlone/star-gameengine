@@ -1,27 +1,26 @@
-import { GameObject } from "../gameobject";
-import { Joystick } from "../joystick";
-import { Script } from "./script";
+import { GameObject } from '../gameobject';
+import { Joystick } from '../joystick';
+import { Script } from './script';
 
 export class FreeMoveScript extends Script {
-    joystick: Joystick;
-    speed: number;
+  joystick: Joystick;
+  speed: number;
 
-    constructor(parent: GameObject, joystick: Joystick, speed: number) {
-        super(parent);
-        this.joystick = joystick;
-        this.speed = speed || 1;
-    }
+  constructor(parent: GameObject, joystick: Joystick, speed: number) {
+    super(parent);
+    this.joystick = joystick;
+    this.speed = speed || 1;
+  }
 
-    update(delta: number, correction: number): void {
-        let x = this.joystick.getAxis('horizontal') || 0;
-        let y = this.joystick.getAxis('vertical') || 0;
-        if (x) {
-            x *= this.speed * delta * correction;
-        }
-        if (y) {
-            y *= this.speed * delta * correction;
-        }
-        this.parent.position.move(x, y);
+  update(delta: number, correction: number): void {
+    let x = this.joystick.getAxis('horizontal') || 0;
+    let y = this.joystick.getAxis('vertical') || 0;
+    if (x) {
+      x *= this.speed * delta * correction;
     }
+    if (y) {
+      y *= this.speed * delta * correction;
+    }
+    this.parent.position.move(x, y);
+  }
 }
-

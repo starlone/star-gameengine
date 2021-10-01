@@ -1,5 +1,5 @@
-import { Extent } from "./extent";
-import { Scene } from "./scene";
+import { Extent } from './extent';
+import { Scene } from './scene';
 
 export class ViewPort {
   private element: any;
@@ -18,8 +18,8 @@ export class ViewPort {
 
     this.element = this.element as HTMLCanvasElement;
 
-    if(!this.element) {
-      throw new Error("Element canvas not found");
+    if (!this.element) {
+      throw new Error('Element canvas not found');
     }
 
     if (!this.element.getContext) {
