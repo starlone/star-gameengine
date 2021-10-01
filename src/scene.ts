@@ -37,4 +37,8 @@ export class Scene {
     }
     return newscene;
   }
+
+  toJSON(): object {
+    return { type: 'Scene', objs: this.objs.map(obj => obj.toJSON()) };
+  }
 }

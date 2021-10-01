@@ -74,4 +74,15 @@ export class GameObject {
     obj.vertices = this.vertices.map(point => point.clone());
     return obj;
   }
+
+  toJSON(): object {
+    return {
+      type: 'GameObject',
+      name: this.name,
+      position: this.position.toJSON(),
+      angle: this.angle,
+      static: this.static,
+      vertices: this.vertices.map(obj => obj.toJSON()),
+    };
+  }
 }

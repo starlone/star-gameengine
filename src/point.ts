@@ -15,4 +15,8 @@ export class Point {
   clone() {
     return new Point(this.x, this.y);
   }
+
+  toJSON() {
+    return { x: this.x, y: this.y };
+  }
 }
