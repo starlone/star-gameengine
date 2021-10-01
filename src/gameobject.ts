@@ -27,7 +27,7 @@ export class GameObject {
     this.renderer?.setParent(this);
 
     const hasRigidBody =
-      options.hasRigidBody != undefined ? options.hasRigidBody : true;
+      options.hasRigidBody !== undefined ? options.hasRigidBody : true;
     this.rigidBody = hasRigidBody ? new RigidBody(this) : undefined;
   }
 

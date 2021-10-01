@@ -12,9 +12,9 @@ export class Factory {
     var w = opt.w || 10;
     var h = opt.h || 10;
 
-    const isStatic = opt.static != undefined ? opt.static : false;
+    const isStatic = opt.static !== undefined ? opt.static : false;
     const hasRigidBody =
-      opt.hasRigidBody != undefined ? opt.hasRigidBody : true;
+      opt.hasRigidBody !== undefined ? opt.hasRigidBody : true;
 
     const rend = new MeshRenderer({
       color: opt.color || 'blue',
