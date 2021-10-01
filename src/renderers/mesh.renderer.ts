@@ -46,11 +46,17 @@ export class MeshRenderer extends Renderer {
   }
 
   clone(): Renderer {
-    return new MeshRenderer({
+    const options = this.toJSON();
+    return new MeshRenderer(options);
+  }
+
+  toJSON(): object {
+    return {
+      type: 'MeshRenderer',
       color: this.color,
       fillStyle: this.fillStyle,
       lineWidth: this.lineWidth,
       strokeStyle: this.strokeStyle,
-    });
+    };
   }
 }

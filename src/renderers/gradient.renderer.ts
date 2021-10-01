@@ -20,9 +20,15 @@ export class GradientRenderer extends Renderer {
   }
 
   clone(): Renderer {
-    return new GradientRenderer({
+    const options = this.toJSON();
+    return new GradientRenderer(options);
+  }
+
+  toJSON() {
+    return {
+      type: 'GradientRenderer',
       color1: this.color1,
       color2: this.color2,
-    });
+    };
   }
 }

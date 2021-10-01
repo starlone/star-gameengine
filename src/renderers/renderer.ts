@@ -11,4 +11,6 @@ export abstract class Renderer {
   abstract render(ctx: CanvasRenderingContext2D, extent: Extent): void;
 
   abstract clone(): Renderer;
+
+  abstract toJSON(): object;
 }

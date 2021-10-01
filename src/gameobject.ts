@@ -5,13 +5,14 @@ import { Point } from './point';
 import { MeshRenderer } from './renderers/mesh.renderer';
 import { Renderer } from './renderers/renderer';
 import { Script } from './scripts/script';
+import { RendererUtils } from './utils/renderer.utils';
 
 export class GameObject {
   name: string = '';
   position: Point = new Point(0, 0);
   angle = 0;
   vertices: Point[] = [];
-  renderer?: Renderer;
+  renderer: Renderer = new MeshRenderer();
   scripts: Script[] = [];
   rigidBody?: RigidBody;
   static = false;
@@ -26,7 +27,10 @@ export class GameObject {
     const vertices = options.vertices || [];
     this.vertices = vertices.map(point => new Point(point.x, point.y));
 
-    this.renderer = options.renderer || new MeshRenderer();
+    this.renderer =
+      options.renderer !== undefined
+        ? RendererUtils.parse(options.renderer)
+        : this.renderer;
     this.renderer?.setParent(this);
 
     const hasRigidBody =
@@ -75,6 +79,7 @@ export class GameObject {
       static: this.static,
       vertices: this.vertices.map(obj => obj.toJSON()),
       hasRigidBody: this.rigidBody !== undefined,
+      renderer: this.renderer?.toJSON(),
     };
   }
 }
