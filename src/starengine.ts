@@ -19,6 +19,10 @@ export class StarEngine {
     return this.scene;
   }
 
+  setScene(newscene: Scene) {
+    this.scene = newscene;
+  }
+
   start(): void {
     if (!this.viewport) {
       this.viewport = new ViewPort(this.elementID);

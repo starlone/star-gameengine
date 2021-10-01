@@ -20,7 +20,9 @@ export class Factory {
       color: opt.color || 'blue',
     });
 
-    const obj = new GameObject(name, x, y, {
+    const obj = new GameObject({
+      name: name,
+      position: { x, y },
       renderer: rend,
       static: isStatic,
       hasRigidBody: hasRigidBody,

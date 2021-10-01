@@ -16,7 +16,7 @@ export class Point {
     return new Point(this.x, this.y);
   }
 
-  toJSON() {
+  toJSON(): { x: number; y: number } {
     return { x: this.x, y: this.y };
   }
 }

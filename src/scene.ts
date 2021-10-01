@@ -10,6 +10,19 @@ export class Scene {
   renderer: Renderer = new GradientRenderer(this);
   physicEngine: PhysicsEngine = new MatterEngine();
 
+  constructor(options?: any) {
+    if (!options) {
+      return;
+    }
+
+    let objs = options.objs || [];
+
+    objs = objs.map((obj: any) => new GameObject(obj));
+    for (const obj of objs) {
+      this.add(obj);
+    }
+  }
+
   render(ctx: CanvasRenderingContext2D, extent: Extent) {
     this.renderer.render(ctx, extent);
     this.objs.forEach(obj => obj.render(ctx, extent));
@@ -30,15 +43,11 @@ export class Scene {
   }
 
   clone(): Scene {
-    const newscene = new Scene();
-    for (const obj of this.objs) {
-      const clone = obj.clone();
-      newscene.add(clone);
-    }
-    return newscene;
+    const json = this.toJSON();
+    return new Scene(json);
   }
 
   toJSON(): object {
-    return { type: 'Scene', objs: this.objs.map(obj => obj.toJSON()) };
+    return { objs: this.objs.map(obj => obj.toJSON()) };
   }
 }

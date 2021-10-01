@@ -16,12 +16,15 @@ export class GameObject {
   rigidBody?: RigidBody;
   static = false;
 
-  constructor(name: string, x: number, y: number, options: IGameObjectOptions) {
-    this.name = name;
-    this.position.x = x;
-    this.position.y = y;
+  constructor(options: IGameObjectOptions) {
+    this.name = options.name;
+    this.position.x = options.position.x;
+    this.position.y = options.position.y;
     this.angle = options.angle || this.angle;
     this.static = options.static || this.static;
+
+    const vertices = options.vertices || [];
+    this.vertices = vertices.map(point => new Point(point.x, point.y));
 
     this.renderer = options.renderer || new MeshRenderer();
     this.renderer?.setParent(this);
@@ -60,29 +63,18 @@ export class GameObject {
   }
 
   clone() {
-    const options = {
-      angle: this.angle,
-      static: this.static,
-      renderer: this.renderer?.clone(),
-    };
-    const obj = new GameObject(
-      this.name,
-      this.position.x,
-      this.position.y,
-      options
-    );
-    obj.vertices = this.vertices.map(point => point.clone());
-    return obj;
+    const options = this.toJSON();
+    return new GameObject(options);
   }
 
-  toJSON(): object {
+  toJSON(): IGameObjectOptions {
     return {
-      type: 'GameObject',
       name: this.name,
       position: this.position.toJSON(),
       angle: this.angle,
       static: this.static,
       vertices: this.vertices.map(obj => obj.toJSON()),
+      hasRigidBody: this.rigidBody !== undefined,
     };
   }
 }
