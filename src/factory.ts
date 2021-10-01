@@ -14,8 +14,8 @@ export class Factory {
     var vertices = [
       { x: -w / 2, y: -h / 2 },
       { x: w / 2, y: -h / 2 },
-      { x: -w / 2, y: h / 2 },
       { x: w / 2, y: h / 2 },
+      { x: -w / 2, y: h / 2 },
     ];
 
     return new GameObject({
