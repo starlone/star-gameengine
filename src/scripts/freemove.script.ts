@@ -1,4 +1,3 @@
-import { GameObject } from '../gameobject';
 import { Joystick } from '../joystick';
 import { Script } from './script';
 
@@ -6,8 +5,8 @@ export class FreeMoveScript extends Script {
   joystick: Joystick;
   speed: number;
 
-  constructor(parent: GameObject, joystick: Joystick, speed: number) {
-    super(parent);
+  constructor(joystick: Joystick, speed: number) {
+    super();
     this.joystick = joystick;
     this.speed = speed || 1;
   }
@@ -21,6 +20,6 @@ export class FreeMoveScript extends Script {
     if (y) {
       y *= this.speed * delta * correction;
     }
-    this.parent.position.move(x, y);
+    this.parent?.position.move(x, y);
   }
 }

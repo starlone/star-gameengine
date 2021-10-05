@@ -61,6 +61,7 @@ export class GameObject {
 
   addScript(script: Script) {
     this.scripts.push(script);
+    script.setParent(this);
   }
 
   isStatic(): boolean {

@@ -12,8 +12,6 @@ export class Scene {
   physicEngine: PhysicsEngine = new MatterEngine();
 
   constructor(options?: any) {
-    console.log('oi');
-
     options = options || {};
 
     let objs = options.objs || [];

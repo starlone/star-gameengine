@@ -1,9 +1,9 @@
 import { GameObject } from '../gameobject';
 
 export abstract class Script {
-  parent: GameObject;
+  parent?: GameObject;
 
-  constructor(parent: GameObject) {
+  setParent(parent: GameObject) {
     this.parent = parent;
   }
 
