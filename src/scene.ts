@@ -6,14 +6,15 @@ import { GradientRenderer } from './renderers/gradient.renderer';
 import { Renderer } from './renderers/renderer';
 
 export class Scene {
+  camera?: GameObject;
   objs: GameObject[] = [];
   renderer: Renderer = new GradientRenderer(this);
   physicEngine: PhysicsEngine = new MatterEngine();
 
   constructor(options?: any) {
-    if (!options) {
-      return;
-    }
+    console.log('oi');
+
+    options = options || {};
 
     let objs = options.objs || [];
 
@@ -21,6 +22,26 @@ export class Scene {
     for (const obj of objs) {
       this.add(obj);
     }
+
+    if (options.indexCamera == undefined) {
+      this.camera = new GameObject({
+        name: 'MainCamera',
+        hasRigidBody: false,
+        static: true,
+        position: {
+          x: 0,
+          y: 0,
+        },
+        renderer: undefined,
+      });
+      this.add(this.camera);
+    } else {
+      this.camera = this.objs[options.indexCamera];
+    }
+  }
+
+  getCamera() {
+    return this.camera;
   }
 
   render(ctx: CanvasRenderingContext2D, extent: Extent) {
@@ -48,6 +69,12 @@ export class Scene {
   }
 
   toJSON(): object {
-    return { objs: this.objs.map(obj => obj.toJSON()) };
+    const index = this.camera ? this.objs.indexOf(this.camera) : -1;
+    const indexCamera = index !== -1 ? index : undefined;
+
+    return {
+      objs: this.objs.map(obj => obj.toJSON()),
+      indexCamera,
+    };
   }
 }

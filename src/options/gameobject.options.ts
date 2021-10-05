@@ -6,4 +6,5 @@ export interface IGameObjectOptions {
   renderer?: any;
   angle?: number;
   vertices?: { x: number; y: number }[];
+  hasRenderer?: boolean;
 }

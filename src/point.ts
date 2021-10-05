@@ -12,6 +12,11 @@ export class Point {
     this.y += y;
   }
 
+  change(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+  }
+
   clone() {
     return new Point(this.x, this.y);
   }
