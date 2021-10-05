@@ -1,4 +1,5 @@
 export interface IGameObjectOptions {
+  uid?: string;
   name: string;
   position: { x: number; y: number };
   static?: boolean;
@@ -7,4 +8,5 @@ export interface IGameObjectOptions {
   angle?: number;
   vertices?: { x: number; y: number }[];
   hasRenderer?: boolean;
+  scripts?: any[];
 }

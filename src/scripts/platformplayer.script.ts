@@ -1,21 +1,22 @@
-import { Joystick } from '../joystick';
+import { StarEngine } from '..';
 import { Script } from './script';
 
 export class PlataformPlayerScript extends Script {
-  joystick: Joystick;
   speed: number;
 
-  constructor(joystick: Joystick, speed: number) {
+  constructor(options: any) {
     super();
-    this.joystick = joystick;
-    this.speed = speed || 1;
+    this.speed = options.speed || 1;
   }
 
-  update(delta: number, correction: number): void {
+  update(delta: number, correction: number, engine: StarEngine): void {
     if (!this.parent?.rigidBody) {
+      console.log(this.parent);
       throw Error("Object don't have rigidbody");
     }
-    let x = (this.joystick.getAxis('horizontal') * delta * correction) / 10;
+    let x = engine.getJoystick().getAxis('horizontal');
+    console.log(x);
+    x = (x * delta * correction) / 10;
     x = x || 0;
     var vel = this.parent.rigidBody.body.velocity;
     if (x) {
@@ -28,5 +29,9 @@ export class PlataformPlayerScript extends Script {
       }
     }
     this.parent.rigidBody.setVelocity(x, vel.y);
+  }
+  
+  toJSON(): object {
+    return { type: 'PlataformPlayerScript', speed: this.speed };
   }
 }

@@ -1,19 +1,17 @@
-import { Joystick } from '../joystick';
+import { StarEngine } from '..';
 import { Script } from './script';
 
 export class FreeMoveScript extends Script {
-  joystick: Joystick;
   speed: number;
 
-  constructor(joystick: Joystick, speed: number) {
+  constructor(options: any) {
     super();
-    this.joystick = joystick;
-    this.speed = speed || 1;
+    this.speed = options.speed || 1;
   }
 
-  update(delta: number, correction: number): void {
-    let x = this.joystick.getAxis('horizontal') || 0;
-    let y = this.joystick.getAxis('vertical') || 0;
+  update(delta: number, correction: number, engine: StarEngine): void {
+    let x = engine.getJoystick().getAxis('horizontal') || 0;
+    let y = engine.getJoystick().getAxis('vertical') || 0;
     if (x) {
       x *= this.speed * delta * correction;
     }
@@ -21,5 +19,9 @@ export class FreeMoveScript extends Script {
       y *= this.speed * delta * correction;
     }
     this.parent?.position.move(x, y);
+  }
+
+  toJSON(): object {
+    return { type: 'FreeMoveScript', speed: this.speed };
   }
 }

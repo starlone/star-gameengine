@@ -1,3 +1,4 @@
+import { StarEngine } from '.';
 import { Extent } from './extent';
 import { GameObject } from './gameobject';
 import { MatterEngine } from './physicsengine/matterengine';
@@ -56,9 +57,9 @@ export class Scene {
     this.objs.push(obj);
   }
 
-  update(delta: number, correction: number) {
+  update(delta: number, correction: number, engine: StarEngine) {
     this.physicEngine.update(delta, correction);
-    this.objs.forEach(obj => obj.update(delta, correction));
+    this.objs.forEach(obj => obj.update(delta, correction, engine));
   }
 
   clone(): Scene {

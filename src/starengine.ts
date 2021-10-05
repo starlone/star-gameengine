@@ -48,7 +48,7 @@ export class StarEngine {
   }
 
   update(delta: number, correction: number) {
-    this.scene.update(delta, correction);
+    this.scene.update(delta, correction, this);
   }
 
   render() {
