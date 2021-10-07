@@ -20,6 +20,7 @@ export class GameObject {
   scripts: Script[] = [];
   rigidBody?: RigidBody;
   static: boolean;
+  children: GameObject[] = [];
 
   constructor(options: IGameObjectOptions) {
     this.uid = options.uid || uuidv4();
