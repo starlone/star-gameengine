@@ -46,7 +46,9 @@ export class GameObject {
     if (options.scripts) {
       const scripts = options.scripts.map(obj => ScriptUtils.parse(obj));
       for (const script of scripts) {
-        this.addScript(script);
+        if (script) {
+          this.addScript(script);
+        }
       }
     }
   }

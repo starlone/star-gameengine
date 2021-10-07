@@ -43,6 +43,10 @@ export class Scene {
     return this.camera;
   }
 
+  getObj(uid: string): GameObject | undefined {
+    return this.objs.find(obj => obj.uid == uid);
+  }
+
   render(ctx: CanvasRenderingContext2D, extent: Extent) {
     this.renderer.render(ctx, extent);
     this.objs.forEach(obj => obj.render(ctx, extent));

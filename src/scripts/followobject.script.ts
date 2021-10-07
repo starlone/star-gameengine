@@ -3,11 +3,12 @@ import { GameObject } from '../gameobject';
 import { Script } from './script';
 
 export class FollowObjectScript extends Script {
-  target: GameObject;
+  targetUid: string;
+  target?: GameObject;
 
-  constructor(target: GameObject) {
+  constructor(options: any) {
     super();
-    this.target = target;
+    this.targetUid = options.targetUid;
   }
 
   update(delta: number, correction: number, engine: StarEngine): void {
@@ -15,11 +16,16 @@ export class FollowObjectScript extends Script {
       console.log(delta, correction, engine);
       return;
     }
-    this.parent.position.x = this.target.position.x;
-    this.parent.position.y = this.target.position.y;
+    if (!this.target) {
+      this.target = engine.getScene().getObj(this.targetUid);
+    }
+    if (this.target) {
+      this.parent.position.x = this.target.position.x;
+      this.parent.position.y = this.target.position.y;
+    }
   }
 
   toJSON(): object {
-    return { type: 'FollowObjectScript' };
+    return { type: 'FollowObjectScript', targetUid: this.targetUid };
   }
 }
