@@ -29,7 +29,7 @@ export class PlataformPlayerScript extends Script {
     }
     this.parent.rigidBody.setVelocity(x, vel.y);
   }
-  
+
   toJSON(): object {
     return { type: 'PlataformPlayerScript', speed: this.speed };
   }

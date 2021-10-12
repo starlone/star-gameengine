@@ -22,7 +22,7 @@ export class Scene {
       this.add(obj);
     }
 
-    if (options.indexCamera == undefined) {
+    if (options.indexCamera === undefined) {
       this.camera = new GameObject({
         name: 'MainCamera',
         hasRigidBody: false,
@@ -44,7 +44,7 @@ export class Scene {
   }
 
   getObj(uid: string): GameObject | undefined {
-    return this.objs.find(obj => obj.uid == uid);
+    return this.objs.find(obj => obj.uid === uid);
   }
 
   render(ctx: CanvasRenderingContext2D, extent: Extent) {
