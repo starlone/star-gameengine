@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from 'uuid';
-import { StarEngine } from '.';
 import { Extent } from './extent';
 import { IGameObjectOptions } from './options/gameobject.options';
 import { RigidBody } from './physicsengine/rigidbody';
@@ -7,6 +6,7 @@ import { Point } from './point';
 import { MeshRenderer } from './renderers/mesh.renderer';
 import { Renderer } from './renderers/renderer';
 import { Script } from './scripts/script';
+import { StarEngine } from './starengine';
 import { RendererUtils } from './utils/renderer.utils';
 import { ScriptUtils } from './utils/script.utils';
 

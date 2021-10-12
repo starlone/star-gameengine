@@ -1,4 +1,6 @@
-import { FollowObjectScript, FreeMoveScript, PlataformPlayerScript } from '..';
+import { FollowObjectScript } from '../scripts/followobject.script';
+import { FreeMoveScript } from '../scripts/freemove.script';
+import { PlataformPlayerScript } from '../scripts/platformplayer.script';
 import { Script } from '../scripts/script';
 
 export abstract class ScriptUtils {

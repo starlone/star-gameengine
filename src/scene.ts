@@ -1,10 +1,10 @@
-import { StarEngine } from '.';
 import { Extent } from './extent';
 import { GameObject } from './gameobject';
 import { MatterEngine } from './physicsengine/matterengine';
 import { PhysicsEngine } from './physicsengine/physicsengine';
 import { GradientRenderer } from './renderers/gradient.renderer';
 import { Renderer } from './renderers/renderer';
+import { StarEngine } from './starengine';
 
 export class Scene {
   camera?: GameObject;
