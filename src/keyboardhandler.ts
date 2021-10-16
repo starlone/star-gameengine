@@ -1,42 +1,39 @@
 import { Joystick } from './joystick';
 
 export class KeyboardHandler {
-  joy: Joystick;
 
-  constructor(joystick: Joystick) {
-    var self = this;
-    this.joy = joystick;
+  static add(joystick: Joystick) {
     document.addEventListener('keydown', function (e) {
-      self.keydown(e.key);
+      KeyboardHandler.keydown(e.key, joystick);
     });
     document.addEventListener('keyup', function (e) {
-      self.keyup(e.key);
+      KeyboardHandler.keyup(e.key, joystick);
     });
   }
 
-  keydown(key: string) {
+  static keydown(key: string, joystick: Joystick) {
     key = key.toLowerCase();
     if (['arrowleft', 'a'].includes(key)) {
       // Left
-      this.joy.setAxis('horizontal', -1);
+      joystick.setAxis('horizontal', -1);
     } else if (['arrowright', 'd'].includes(key)) {
       // 'right'
-      this.joy.setAxis('horizontal', 1);
+      joystick.setAxis('horizontal', 1);
     } else if (['arrowup', 'w'].includes(key)) {
       // Up
-      this.joy.setAxis('vertical', -1);
+      joystick.setAxis('vertical', -1);
     } else if (['arrowdown', 's'].includes(key)) {
       // 'Down'
-      this.joy.setAxis('vertical', 1);
+      joystick.setAxis('vertical', 1);
     }
   }
 
-  keyup(key: string) {
+  static keyup(key: string, joystick: Joystick) {
     key = key.toLowerCase();
     if (['arrowleft', 'arrowright', 'a', 'd'].includes(key)) {
-      this.joy.setAxis('horizontal', 0);
+      joystick.setAxis('horizontal', 0);
     } else if (['arrowup', 'arrowdown', 'w', 's'].includes(key)) {
-      this.joy.setAxis('vertical', 0);
+      joystick.setAxis('vertical', 0);
     }
   }
 }
