@@ -64,8 +64,8 @@ export class ViewPort {
     return new Extent(
       this.pivot.x,
       this.pivot.y,
-      this.element.width,
-      this.element.height
+      this.getWidth(),
+      this.getHeight()
     );
   }
 
@@ -74,8 +74,8 @@ export class ViewPort {
     this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx.scale(this.scale, this.scale);
 
-    var x = position.x - this.getWidth() / 2;
-    var y = position.y - this.getHeight() / 2;
+    var x = position.x - (this.getWidth() / 2);
+    var y = position.y - (this.getHeight() / 2);
     this.pivot.change(x, y);
     this.ctx.translate(-x, -y);
   }
