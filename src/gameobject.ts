@@ -31,7 +31,7 @@ export class GameObject {
     this.static = options.static || false;
 
     const vertices = options.vertices || [];
-    this.vertices = vertices.map(point => new Point(point.x, point.y));
+    this.vertices = vertices.map((point) => new Point(point.x, point.y));
 
     if (options.renderer) {
       this.renderer = RendererUtils.parse(options.renderer);
@@ -45,7 +45,7 @@ export class GameObject {
     this.rigidBody = hasRigidBody ? new RigidBody(this) : undefined;
 
     if (options.scripts) {
-      const scripts = options.scripts.map(obj => ScriptUtils.parse(obj));
+      const scripts = options.scripts.map((obj) => ScriptUtils.parse(obj));
       for (const script of scripts) {
         if (script) {
           this.addScript(script);
@@ -71,7 +71,7 @@ export class GameObject {
 
   update(delta: number, correction: number, engine: StarEngine): void {
     if (this.rigidBody) this.rigidBody.update();
-    this.scripts.forEach(script => script.update(delta, correction, engine));
+    this.scripts.forEach((script) => script.update(delta, correction, engine));
   }
 
   addScript(script: Script) {
@@ -95,10 +95,10 @@ export class GameObject {
       position: this.position.toJSON(),
       angle: this.angle,
       static: this.static,
-      vertices: this.vertices.map(obj => obj.toJSON()),
+      vertices: this.vertices.map((obj) => obj.toJSON()),
       hasRigidBody: this.rigidBody !== undefined,
       renderer: this.renderer?.toJSON(),
-      scripts: this.scripts.map(obj => obj.toJSON()),
+      scripts: this.scripts.map((obj) => obj.toJSON()),
     };
   }
 }

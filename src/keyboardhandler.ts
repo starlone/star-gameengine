@@ -6,10 +6,10 @@ export class KeyboardHandler {
   constructor(joystick: Joystick) {
     var self = this;
     this.joy = joystick;
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       self.keydown(e.key);
     });
-    document.addEventListener('keyup', function(e) {
+    document.addEventListener('keyup', function (e) {
       self.keyup(e.key);
     });
   }

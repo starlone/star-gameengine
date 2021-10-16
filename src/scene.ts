@@ -44,12 +44,12 @@ export class Scene {
   }
 
   getObj(uid: string): GameObject | undefined {
-    return this.objs.find(obj => obj.uid === uid);
+    return this.objs.find((obj) => obj.uid === uid);
   }
 
   render(ctx: CanvasRenderingContext2D, extent: Extent) {
     this.renderer.render(ctx, extent);
-    this.objs.forEach(obj => obj.render(ctx, extent));
+    this.objs.forEach((obj) => obj.render(ctx, extent));
   }
 
   add(obj: GameObject) {
@@ -63,7 +63,7 @@ export class Scene {
 
   update(delta: number, correction: number, engine: StarEngine) {
     this.physicEngine.update(delta, correction);
-    this.objs.forEach(obj => obj.update(delta, correction, engine));
+    this.objs.forEach((obj) => obj.update(delta, correction, engine));
   }
 
   clone(): Scene {
@@ -76,7 +76,7 @@ export class Scene {
     const indexCamera = index !== -1 ? index : undefined;
 
     return {
-      objs: this.objs.map(obj => obj.toJSON()),
+      objs: this.objs.map((obj) => obj.toJSON()),
       indexCamera,
     };
   }

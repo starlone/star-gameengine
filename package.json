@@ -11,13 +11,15 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch",
+    "start": "tsdx lint --fix && npm run prettier:fix && tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "analyze": "size-limit --why",
+    "prettier": "prettier --check src/**/*",
+    "prettier:fix": "prettier --write src/**/*"
   },
   "husky": {
     "hooks": {
@@ -48,6 +50,7 @@
     "@types/matter-js": "^0.17.5",
     "@types/uuid": "^8.3.1",
     "husky": "^7.0.2",
+    "prettier": "2.4.1",
     "size-limit": "^6.0.1",
     "tsdx": "^0.14.1",
     "tslib": "^2.3.1",
