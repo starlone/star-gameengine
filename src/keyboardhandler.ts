@@ -1,7 +1,6 @@
 import { Joystick } from './joystick';
 
 export class KeyboardHandler {
-
   static add(joystick: Joystick) {
     document.addEventListener('keydown', function (e) {
       KeyboardHandler.keydown(e.key, joystick);

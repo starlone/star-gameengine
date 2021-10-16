@@ -85,6 +85,6 @@ export class ViewPort {
   }
 
   getHeight() {
-    return this.element.width / this.scale;
+    return this.element.height / this.scale;
   }
 }
