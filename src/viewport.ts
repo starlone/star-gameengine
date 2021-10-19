@@ -1,14 +1,19 @@
 import { Extent } from './extent';
+import { Interaction } from './interactions/interaction';
 import { Point } from './point';
 import { Scene } from './scene';
 
 export class ViewPort {
   private element: any;
-  private ctx: CanvasRenderingContext2D;
+  private ctx?: CanvasRenderingContext2D;
   private pivot: Point = new Point(0, 0);
   private scale = 1.0;
+  private interactions: Interaction[] = [];
+  private isActive = false;
 
-  constructor(private elementID: string) {
+  constructor(private elementID: string) {}
+
+  active() {
     if (this.elementID) {
       if (typeof this.elementID === 'string') {
         this.element = window.document.querySelector(this.elementID);
@@ -33,6 +38,20 @@ export class ViewPort {
 
     window.addEventListener('resize', () => this.updateSize());
     this.updateSize();
+    this.isActive = true;
+    this.activeInteractions();
+  }
+
+  addInteraction(interaction: Interaction) {
+    interaction.setParent(this);
+    this.interactions.push(interaction);
+    if (this.isActive) interaction.active();
+  }
+
+  activeInteractions() {
+    for (const interaction of this.interactions) {
+      interaction.active();
+    }
   }
 
   updateSize() {
@@ -47,6 +66,7 @@ export class ViewPort {
   }
 
   clear() {
+    if (!this.ctx) return;
     const extent = this.getExtentView();
     this.ctx.clearRect(extent.x, extent.y, extent.width, extent.height);
   }
@@ -57,6 +77,7 @@ export class ViewPort {
       this.updatePivot(camera.position);
     }
     this.clear();
+    if (!this.ctx) return;
     scene.render(this.ctx, this.getExtentView());
   }
 
@@ -70,6 +91,7 @@ export class ViewPort {
   }
 
   updatePivot(position: Point) {
+    if (!this.ctx) return;
     // Reset draw
     this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx.scale(this.scale, this.scale);
@@ -80,11 +102,23 @@ export class ViewPort {
     this.ctx.translate(-x, -y);
   }
 
+  getElement() {
+    return this.element;
+  }
+
   getWidth() {
     return this.element.width / this.scale;
   }
 
   getHeight() {
     return this.element.height / this.scale;
+  }
+
+  getScale() {
+    return this.scale;
+  }
+
+  setScale(scale: number) {
+    this.scale = scale;
   }
 }

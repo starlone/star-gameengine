@@ -17,6 +17,13 @@ export class Point {
     this.y = y;
   }
 
+  calcDistance(other: Point): any {
+    // Catetos
+    var dx = this.x - other.x;
+    var dy = this.y - other.y;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
   clone() {
     return new Point(this.x, this.y);
   }

@@ -1,5 +1,6 @@
 import { Factory } from './factory';
 import { GameObject } from './gameobject';
+import { ZoomInteraction } from './interactions/zoom.interaction';
 import { KeyboardHandler } from './keyboardhandler';
 import { Scene } from './scene';
 import { FollowObjectScript } from './scripts/followobject.script';
@@ -10,6 +11,7 @@ import { StarEngine } from './starengine';
 export {
   Factory,
   GameObject,
+  ZoomInteraction,
   KeyboardHandler,
   Scene,
   FollowObjectScript,

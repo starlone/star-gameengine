@@ -6,13 +6,14 @@ import { ViewPort } from './viewport';
 export class StarEngine {
   private runner = new Runner();
   private scene = new Scene();
-  private viewport?: ViewPort;
+  private viewport: ViewPort;
   private joystick = new Joystick();
 
-  constructor(private elementID: string, scene?: Scene) {
+  constructor(elementID: string, scene?: Scene) {
     if (scene) {
       this.scene = scene;
     }
+    this.viewport = new ViewPort(elementID);
   }
 
   getScene() {
@@ -23,11 +24,12 @@ export class StarEngine {
     this.scene = newscene;
   }
 
-  start(): void {
-    if (!this.viewport) {
-      this.viewport = new ViewPort(this.elementID);
-    }
+  getViewport(): ViewPort | undefined {
+    return this.viewport;
+  }
 
+  start(): void {
+    this.viewport.active();
     this.runner.start(this);
   }
 
