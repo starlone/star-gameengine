@@ -7,39 +7,40 @@ export class PanInteraction extends Interaction {
   private last?: Point;
   private isDown: boolean = false;
   private inverse = true;
+  private functions: any = {};
 
   constructor(private target: GameObject) {
     super();
-  }
 
-  mousedown(e: any) {
-    this.start(e.offsetX, e.offsetY);
-  }
+    this.functions.mousedown = (e: any) => {
+      this.start(e.offsetX, e.offsetY);
+    };
 
-  mouseup() {
-    this.end();
-  }
+    this.functions.mouseup = () => {
+      this.end();
+    };
 
-  mousemove(e: any) {
-    this.move(e.offsetX, e.offsetY);
-  }
+    this.functions.mousemove = (e: any) => {
+      this.move(e.offsetX, e.offsetY);
+    };
 
-  touchstart(e: any) {
-    if (e.touches.length === 1) {
+    this.functions.touchstart = (e: any) => {
+      if (e.touches.length !== 1) return;
+
       var t = e.touches[0];
       this.start(t.pageX, t.pageY);
-    }
-  }
+    };
 
-  touchend() {
-    this.end();
-  }
+    this.functions.touchend = () => {
+      this.end();
+    };
 
-  touchmove(e: any) {
-    if (e.touches.length === 1) {
+    this.functions.touchmove = (e: any) => {
+      if (e.touches.length !== 1) return;
+      
       var t = e.touches[0];
       this.move(t.pageX, t.pageY);
-    }
+    };
   }
 
   start(x: number, y: number) {
@@ -75,42 +76,27 @@ export class PanInteraction extends Interaction {
 
     const element = this.parent?.getElement();
     if (!element) return;
-    element.addEventListener('mousedown', (e: any) => {
-      this.mousedown(e);
-    });
-    element.addEventListener('mouseup', () => {
-      this.mouseup();
-    });
-    element.addEventListener('mousemove', (e: any) => {
-      this.mousemove(e);
-    });
-    element.addEventListener('touchstart', (e: any) => {
-      this.touchstart(e);
-    });
-    element.addEventListener('touchend', () => {
-      this.touchend();
-    });
-    element.addEventListener('touchmove', (e: any) => {
-      this.touchmove(e);
-    });
+
+    element.addEventListener('mousedown', this.functions.mousedown);
+    element.addEventListener('mouseup', this.functions.mouseup);
+    element.addEventListener('mousemove', this.functions.mousemove);
+    element.addEventListener('touchstart', this.functions.touchstart);
+    element.addEventListener('touchend', this.functions.touchend);
+    element.addEventListener('touchmove', this.functions.touchmove);
   }
+
   desactive(): void {
+    this.isDown = false;
+    this.last = undefined;
+
     const element = this.parent?.getElement();
     if (!element) return;
-    element.removeEventListener('mousedown', (e: any) => {
-      this.mousedown(e);
-    });
-    element.removeEventListener('mouseup', () => {
-      this.mouseup();
-    });
-    element.removeEventListener('mousemove', (e: any) => {
-      this.mousemove(e);
-    });
-    element.removeEventListener('touchstart', (e: any) => {
-      this.touchstart(e);
-    });
-    element.removeEventListener('touchend', () => {
-      this.touchend();
-    });
+
+    element.removeEventListener('mousedown', this.functions.mousedown);
+    element.removeEventListener('mouseup', this.functions.mouseup);
+    element.removeEventListener('mousemove', this.functions.mousemove);
+    element.removeEventListener('touchstart', this.functions.touchstart);
+    element.removeEventListener('touchend', this.functions.touchend);
+    element.removeEventListener('touchmove', this.functions.touchmove);
   }
 }
