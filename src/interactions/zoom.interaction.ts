@@ -43,7 +43,7 @@ export class ZoomInteraction extends Interaction {
 
   touchmove(e: any) {
     if (e.touches.length !== 2) return;
-    
+
     var viewport = this.parent;
     if (!viewport) return;
 

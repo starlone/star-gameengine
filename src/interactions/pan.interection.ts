@@ -37,7 +37,7 @@ export class PanInteraction extends Interaction {
 
     this.functions.touchmove = (e: any) => {
       if (e.touches.length !== 1) return;
-      
+
       var t = e.touches[0];
       this.move(t.pageX, t.pageY);
     };
