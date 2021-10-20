@@ -1,5 +1,6 @@
 import { Factory } from './factory';
 import { GameObject } from './gameobject';
+import { PanInteraction } from './interactions/pan.interection';
 import { ZoomInteraction } from './interactions/zoom.interaction';
 import { KeyboardHandler } from './keyboardhandler';
 import { Scene } from './scene';
@@ -11,6 +12,7 @@ import { StarEngine } from './starengine';
 export {
   Factory,
   GameObject,
+  PanInteraction,
   ZoomInteraction,
   KeyboardHandler,
   Scene,

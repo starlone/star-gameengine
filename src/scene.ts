@@ -7,7 +7,7 @@ import { Renderer } from './renderers/renderer';
 import { StarEngine } from './starengine';
 
 export class Scene {
-  camera?: GameObject;
+  camera: GameObject;
   objs: GameObject[] = [];
   renderer: Renderer = new GradientRenderer(this);
   physicEngine: PhysicsEngine = new MatterEngine();

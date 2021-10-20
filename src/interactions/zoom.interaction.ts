@@ -54,7 +54,6 @@ export class ZoomInteraction extends Interaction {
 
   active() {
     const element = this.parent?.getElement();
-    console.log(element);
     if (!element) return;
     element.addEventListener('wheel', (e: any) => {
       this.wheel(e);
@@ -73,9 +72,5 @@ export class ZoomInteraction extends Interaction {
     element.removeEventListener('wheel', this.wheel);
     element.removeEventListener('touchstart', this.touchstart);
     element.removeEventListener('touchmove', this.touchmove);
-  }
-
-  toJSON(): object {
-    return { type: 'ZoomInteraction' };
   }
 }

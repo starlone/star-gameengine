@@ -10,6 +10,4 @@ export abstract class Interaction {
   abstract active(): void;
 
   abstract desactive(): void;
-
-  abstract toJSON(): object;
 }
