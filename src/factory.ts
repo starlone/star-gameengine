@@ -28,6 +28,7 @@ export class Factory {
         color: opt.color || 'blue',
       },
       vertices: vertices,
+      angle: opt.angle,
     });
   }
 }

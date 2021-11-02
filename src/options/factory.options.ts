@@ -4,6 +4,7 @@ export interface IFactoryOptions {
   y?: number;
   w?: number;
   h?: number;
+  angle?: number;
 
   static?: boolean;
   hasRigidBody?: boolean;
