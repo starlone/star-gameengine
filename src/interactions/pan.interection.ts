@@ -1,15 +1,16 @@
-import { GameObject } from '..';
-import { seEventPanEnd } from '../events/panend.event';
 import { Point } from '../point';
 import { Interaction } from './interaction';
 
 export class PanInteraction extends Interaction {
   private last?: Point;
   private isDown: boolean = false;
-  private inverse = true;
   private functions: any = {};
 
-  constructor(private target: GameObject) {
+  constructor(
+    private callbackStart: Function,
+    private callbackEnd: Function,
+    private callbackMove: Function
+  ) {
     super();
 
     this.functions.mousedown = (e: any) => {
@@ -46,11 +47,13 @@ export class PanInteraction extends Interaction {
   start(x: number, y: number) {
     this.last = new Point(x, y);
     this.isDown = true;
+    const coordinate = this.parent?.transformPixelToCoordinate(x, y);
+    this.callbackStart(coordinate);
   }
 
   end() {
     this.isDown = false;
-    document.dispatchEvent(seEventPanEnd);
+    this.callbackEnd();
   }
 
   move(x: number, y: number) {
@@ -58,16 +61,15 @@ export class PanInteraction extends Interaction {
     if (!this.isDown || !viewport || !this.last) {
       return;
     }
-    var point = new Point(x, y);
-    var newpoint = point.clone();
+    const point = new Point(x, y);
+    const newpoint = point.clone();
     newpoint.sub(this.last);
-    if (this.inverse) {
-      newpoint.neg();
-    }
+    this.last = point;
+
     const scale = viewport.getScale();
     newpoint.div(new Point(scale, scale));
-    this.target.position.move(newpoint.x, newpoint.y);
-    this.last = point;
+
+    this.callbackMove(newpoint);
   }
 
   active(): void {

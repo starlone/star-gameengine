@@ -24,7 +24,7 @@ export class StarEngine {
     this.scene = newscene;
   }
 
-  getViewport(): ViewPort | undefined {
+  getViewport(): ViewPort {
     return this.viewport;
   }
 
