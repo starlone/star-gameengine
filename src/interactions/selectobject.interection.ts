@@ -1,10 +1,9 @@
-import { GameObject, Scene } from '..';
 import { Interaction } from './interaction';
 
 export class SelectObjectInteraction extends Interaction {
   private functions: any = {};
 
-  constructor(private scene: Scene, private callback: Function) {
+  constructor(private callback: Function) {
     super();
 
     this.functions.dblclick = (e: any) => {
@@ -14,16 +13,8 @@ export class SelectObjectInteraction extends Interaction {
   }
 
   dblclick(e: any) {
-    return this.getObject(e.offsetX, e.offsetY);
-  }
-
-  getObject(x: number, y: number): GameObject | undefined {
     if (!this.parent) return undefined;
-
-    console.log(x, y)
-
-    const coordinate = this.parent.transformPixelToCoordinate(x, y);
-    return this.scene.getObjectByCoordinate(coordinate);
+    return this.parent.transformPixelToCoordinate(e.offsetX, e.offsetY);
   }
 
   active(): void {
