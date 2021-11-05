@@ -1,6 +1,7 @@
 import { Factory } from './factory';
 import { GameObject } from './gameobject';
 import { PanInteraction } from './interactions/pan.interection';
+import { SelectObjectInteraction } from './interactions/selectobject.interection';
 import { ZoomInteraction } from './interactions/zoom.interaction';
 import { KeyboardHandler } from './keyboardhandler';
 import { Scene } from './scene';
@@ -14,6 +15,7 @@ export {
   GameObject,
   PanInteraction,
   ZoomInteraction,
+  SelectObjectInteraction,
   KeyboardHandler,
   Scene,
   FollowObjectScript,

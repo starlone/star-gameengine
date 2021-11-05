@@ -83,6 +83,18 @@ export class GameObject {
     return this.static;
   }
 
+  getExtent(): Extent {
+    var pos = this.getRealPosition();
+    const extent = Extent.createEmpty();
+    extent.extendVectors(this.vertices);
+    extent.move(pos);
+    return extent;
+  }
+
+  getRealPosition() {
+    return this.position;
+  }
+
   clone() {
     const options = this.toJSON();
     return new GameObject(options);

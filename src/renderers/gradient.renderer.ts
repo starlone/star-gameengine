@@ -16,7 +16,7 @@ export class GradientRenderer extends Renderer {
     grd.addColorStop(0, this.color1);
     grd.addColorStop(1, this.color2);
     c.fillStyle = grd;
-    c.fillRect(extent.x, extent.y, extent.width, extent.height);
+    c.fillRect(extent.min.x, extent.min.y, extent.max.x, extent.max.y);
   }
 
   clone(): Renderer {

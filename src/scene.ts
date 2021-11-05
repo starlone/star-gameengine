@@ -2,6 +2,7 @@ import { Extent } from './extent';
 import { GameObject } from './gameobject';
 import { MatterEngine } from './physicsengine/matterengine';
 import { PhysicsEngine } from './physicsengine/physicsengine';
+import { Point } from './point';
 import { GradientRenderer } from './renderers/gradient.renderer';
 import { Renderer } from './renderers/renderer';
 import { StarEngine } from './starengine';
@@ -64,6 +65,17 @@ export class Scene {
   update(delta: number, correction: number, engine: StarEngine) {
     this.physicEngine.update(delta, correction);
     this.objs.forEach((obj) => obj.update(delta, correction, engine));
+  }
+
+  getObjectByCoordinate(coordinate: Point) {
+    var objs = this.objs;
+    for (var i = objs.length - 1; i >= 0; i--) {
+      var obj = objs[i];
+      if (obj.getExtent().contains(coordinate)) {
+        return obj;
+      }
+    }
+    return undefined;
   }
 
   clone(): Scene {

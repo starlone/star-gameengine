@@ -24,6 +24,12 @@ export class Point {
     return Math.sqrt(dx * dx + dy * dy);
   }
 
+  sum(other: Point) {
+    this.x = this.x + other.x;
+    this.y = this.y + other.y;
+    return this;
+  }
+
   sub(other: Point) {
     this.x = this.x - other.x;
     this.y = this.y - other.y;

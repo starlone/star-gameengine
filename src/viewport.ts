@@ -68,7 +68,7 @@ export class ViewPort {
   clear() {
     if (!this.ctx) return;
     const extent = this.getExtentView();
-    this.ctx.clearRect(extent.x, extent.y, extent.width, extent.height);
+    this.ctx.clearRect(extent.min.x, extent.min.y, extent.max.x, extent.max.y);
   }
 
   render(scene: Scene) {
@@ -120,5 +120,12 @@ export class ViewPort {
 
   setScale(scale: number) {
     this.scale = scale;
+  }
+
+  transformPixelToCoordinate(x: number, y: number) {
+    var coor = new Point(x, y);
+    var scale = new Point(this.scale, this.scale);
+    coor.div(scale);
+    return coor.sum(this.pivot);
   }
 }
