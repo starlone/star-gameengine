@@ -21,6 +21,7 @@ export class GameObject {
   rigidBody?: RigidBody;
   static: boolean;
   children: GameObject[] = [];
+  parent?: GameObject;
 
   constructor(options: IGameObjectOptions) {
     this.uid = options.uid || uuidv4();
@@ -44,6 +45,13 @@ export class GameObject {
       options.hasRigidBody !== undefined ? options.hasRigidBody : true;
     this.rigidBody = hasRigidBody ? new RigidBody(this) : undefined;
 
+    if (options.children) {
+      const children = options.children.map((obj) => new GameObject(obj));
+      for (const child of children) {
+        this.addChild(child);
+      }
+    }
+
     if (options.scripts) {
       const scripts = options.scripts.map((obj) => ScriptUtils.parse(obj));
       for (const script of scripts) {
@@ -64,6 +72,10 @@ export class GameObject {
       this.renderer.render(ctx, extent);
     }
 
+    for (const child of this.children) {
+      child.render(ctx, extent);
+    }
+
     // Reset
     ctx.rotate(-this.angle);
     ctx.translate(-pos.x, -pos.y);
@@ -72,6 +84,23 @@ export class GameObject {
   update(delta: number, correction: number, engine: StarEngine): void {
     if (this.rigidBody) this.rigidBody.update();
     this.scripts.forEach((script) => script.update(delta, correction, engine));
+  }
+
+  setParent(parent: GameObject) {
+    this.parent = parent;
+  }
+
+  add(obj: any) {
+    if (obj instanceof GameObject) {
+      this.addChild(obj);
+    } else if (obj instanceof Script) {
+      this.addScript(obj);
+    }
+  }
+
+  addChild(gameobject: GameObject) {
+    this.children.push(gameobject);
+    gameobject.setParent(this);
   }
 
   addScript(script: Script) {
@@ -110,6 +139,7 @@ export class GameObject {
       vertices: this.vertices.map((obj) => obj.toJSON()),
       hasRigidBody: this.rigidBody !== undefined,
       renderer: this.renderer?.toJSON(),
+      children: this.children.map((obj) => obj.toJSON()),
       scripts: this.scripts.map((obj) => obj.toJSON()),
     };
   }

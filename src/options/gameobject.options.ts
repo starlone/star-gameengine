@@ -8,5 +8,6 @@ export interface IGameObjectOptions {
   angle?: number;
   vertices?: { x: number; y: number }[];
   hasRenderer?: boolean;
+  children?: IGameObjectOptions[]
   scripts?: any[];
 }
