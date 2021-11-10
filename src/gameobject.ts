@@ -86,6 +86,10 @@ export class GameObject {
     this.scripts.forEach((script) => script.update(delta, correction, engine));
   }
 
+  getParent(): GameObject | undefined {
+    return this.parent;
+  }
+
   setParent(parent: GameObject) {
     this.parent = parent;
   }
@@ -101,6 +105,18 @@ export class GameObject {
   addChild(gameobject: GameObject) {
     this.children.push(gameobject);
     gameobject.setParent(this);
+  }
+
+  addChildAbove(from: GameObject, to: GameObject) {
+    const index = this.children.indexOf(to);
+    this.children.splice(index, 0, from);
+    from.setParent(this);
+  }
+
+  addChildBelow(from: GameObject, to: GameObject) {
+    const index = this.children.indexOf(to);
+    this.children.splice(index + 1, 0, from);
+    from.setParent(this);
   }
 
   addScript(script: Script) {

@@ -4,6 +4,7 @@ import { PanInteraction } from './interactions/pan.interection';
 import { SelectObjectInteraction } from './interactions/selectobject.interection';
 import { ZoomInteraction } from './interactions/zoom.interaction';
 import { KeyboardHandler } from './keyboardhandler';
+import { IGameObjectOptions } from './options/gameobject.options';
 import { Scene } from './scene';
 import { FollowObjectScript } from './scripts/followobject.script';
 import { FreeMoveScript } from './scripts/freemove.script';
@@ -17,6 +18,7 @@ export {
   ZoomInteraction,
   SelectObjectInteraction,
   KeyboardHandler,
+  IGameObjectOptions,
   Scene,
   FollowObjectScript,
   FreeMoveScript,
