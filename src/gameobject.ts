@@ -90,7 +90,7 @@ export class GameObject {
     return this.parent;
   }
 
-  setParent(parent: GameObject) {
+  setParent(parent: GameObject | undefined) {
     this.parent = parent;
   }
 
