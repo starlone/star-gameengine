@@ -37,9 +37,17 @@ export class MeshRenderer extends Renderer {
 
     c.fillStyle = this.color;
     if (this.strokeStyle) {
+      // Backup
+      const lineWidthBkp = c.lineWidth;
+      const strokeStyleBkp = c.strokeStyle;
+
       c.lineWidth = this.lineWidth;
       c.strokeStyle = this.strokeStyle;
       c.stroke();
+
+      // Restore
+      c.lineWidth = lineWidthBkp;
+      c.strokeStyle = strokeStyleBkp;
     }
 
     c.fill();
