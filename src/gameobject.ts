@@ -34,12 +34,13 @@ export class GameObject {
     const vertices = options.vertices || [];
     this.vertices = vertices.map((point) => new Point(point.x, point.y));
 
+    let renderer: Renderer | undefined;
     if (options.renderer) {
-      this.renderer = RendererUtils.parse(options.renderer);
+      renderer = RendererUtils.parse(options.renderer);
     } else if (options.hasRenderer) {
-      this.renderer = new MeshRenderer();
+      renderer = new MeshRenderer();
     }
-    this.renderer?.setParent(this);
+    if (renderer) this.setRenderer(renderer);
 
     const hasRigidBody =
       options.hasRigidBody !== undefined ? options.hasRigidBody : true;
@@ -94,7 +95,12 @@ export class GameObject {
     this.parent = parent;
   }
 
-  add(obj: any) {
+  setRenderer(renderer: Renderer) {
+    this.renderer = renderer;
+    this.renderer.setParent(this);
+  }
+
+  add(obj: GameObject | Script | undefined) {
     if (obj instanceof GameObject) {
       this.addChild(obj);
     } else if (obj instanceof Script) {
