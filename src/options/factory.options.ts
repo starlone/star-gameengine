@@ -6,6 +6,9 @@ export interface IFactoryOptions {
   h?: number;
   angle?: number;
 
+  radius?: number;
+  maxSides?: number;
+
   static?: boolean;
   hasRigidBody?: boolean;
   color?: string;
