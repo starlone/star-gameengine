@@ -15,11 +15,11 @@ export class PlataformPlayerScript extends Script {
       throw Error("Object don't have rigidbody");
     }
     let x = engine.getJoystick().getAxis('horizontal');
-    x = (x * delta * correction) / 10;
+    x = x * delta * correction;
     x = x || 0;
     var vel = this.parent.rigidBody.body.velocity;
     if (x) {
-      x = vel.x + x * this.speed;
+      x = (vel.x + x) * this.speed;
       if (x > 16) {
         x = 16;
       }
