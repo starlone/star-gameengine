@@ -10,6 +10,7 @@ import { Scene } from './scene';
 import { FollowObjectScript } from './scripts/followobject.script';
 import { FreeMoveScript } from './scripts/freemove.script';
 import { PlataformPlayerScript } from './scripts/platformplayer.script';
+import { Script } from './scripts/script';
 import { StarEngine } from './starengine';
 
 export {
@@ -25,5 +26,6 @@ export {
   FollowObjectScript,
   FreeMoveScript,
   PlataformPlayerScript,
+  Script,
   StarEngine,
 };

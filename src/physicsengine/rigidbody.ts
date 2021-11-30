@@ -21,4 +21,19 @@ export class RigidBody {
       this.physicEngine.setVelocity(this.body, { x, y });
     }
   }
+
+  applyForce(
+    position: { x: number; y: number },
+    force: { x: number; y: number }
+  ) {
+    if (this.physicEngine) {
+      this.physicEngine.applyForce(this.body, position, force);
+    }
+  }
+
+  setAngularVelocity(velocity: number) {
+    if (this.physicEngine) {
+      this.physicEngine.setAngularVelocity(this.body, velocity);
+    }
+  }
 }

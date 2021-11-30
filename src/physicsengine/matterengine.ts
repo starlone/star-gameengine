@@ -38,4 +38,18 @@ export class MatterEngine implements PhysicsEngine {
     Matter.Sleeping.set(body, false); // Wake up Object
     Matter.Body.setVelocity(body, velocity);
   }
+
+  applyForce(
+    body: any,
+    position: { x: number; y: number },
+    force: { x: number; y: number }
+  ): void {
+    Matter.Sleeping.set(body, false); // Wake up Object
+    Matter.Body.applyForce(body, position, force);
+  }
+
+  setAngularVelocity(body: any, velocity: number): void {
+    Matter.Sleeping.set(body, false); // Wake up Object
+    Matter.Body.setAngularVelocity(body, velocity);
+  }
 }
