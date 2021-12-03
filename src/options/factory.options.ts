@@ -1,3 +1,5 @@
+import { IRigidBodyOptions } from './rigidbody.options';
+
 export interface IFactoryOptions {
   name: string;
   x?: number;
@@ -12,4 +14,6 @@ export interface IFactoryOptions {
   static?: boolean;
   hasRigidBody?: boolean;
   color?: string;
+
+  rigidBody?: IRigidBodyOptions;
 }

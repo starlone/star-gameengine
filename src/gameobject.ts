@@ -42,9 +42,10 @@ export class GameObject {
     }
     if (renderer) this.setRenderer(renderer);
 
-    const hasRigidBody =
-      options.hasRigidBody !== undefined ? options.hasRigidBody : true;
-    this.rigidBody = hasRigidBody ? new RigidBody(this) : undefined;
+    this.rigidBody =
+      options.rigidBody !== undefined
+        ? new RigidBody(this, options.rigidBody)
+        : undefined;
 
     if (options.children) {
       const children = options.children.map((obj) => new GameObject(obj));
@@ -142,8 +143,17 @@ export class GameObject {
     return extent;
   }
 
-  getRealPosition() {
-    return this.position;
+  getRealPosition(): Point {
+    var pos = this.position;
+
+    var parent = this.parent;
+
+    if (parent) {
+      const pos2 = parent.getRealPosition();
+      pos.sum(pos2);
+    }
+
+    return pos;
   }
 
   clone() {
@@ -152,6 +162,7 @@ export class GameObject {
   }
 
   toJSON(): IGameObjectOptions {
+    const rigidBody = this.rigidBody ? this.rigidBody.toJSON() : undefined;
     return {
       uid: this.uid,
       name: this.name,
@@ -159,7 +170,7 @@ export class GameObject {
       angle: this.angle,
       static: this.static,
       vertices: this.vertices.map((obj) => obj.toJSON()),
-      hasRigidBody: this.rigidBody !== undefined,
+      rigidBody: rigidBody,
       renderer: this.renderer?.toJSON(),
       children: this.children.map((obj) => obj.toJSON()),
       scripts: this.scripts.map((obj) => obj.toJSON()),

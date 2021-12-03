@@ -25,8 +25,7 @@ export class Scene {
 
     if (options.indexCamera === undefined) {
       this.camera = new GameObject({
-        name: 'MainCamera',
-        hasRigidBody: false,
+        name: 'MainCamera'
         static: true,
         position: {
           x: 0,

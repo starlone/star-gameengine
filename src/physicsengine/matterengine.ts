@@ -17,17 +17,30 @@ export class MatterEngine implements PhysicsEngine {
       options.canRotate = true;
     }
 
-    const body = {
+    var position = obj.getRealPosition();
+
+    let body: any = {
       label: name,
-      position: { x: obj.position.x, y: obj.position.y },
+      position: position.toJSON(),
       vertices: obj.vertices,
       angle: obj.angle,
       isStatic: obj.isStatic(),
     };
+
+    if (obj.rigidBody?.friction) {
+      body.friction = obj.rigidBody?.friction;
+    }
+    if (obj.rigidBody?.restitution) {
+      body.restitution = obj.rigidBody?.restitution;
+    }
+    if (obj.rigidBody?.density) {
+      body.density = obj.rigidBody?.density;
+    }
+    console.log(body);
     const newbody = Body.create(Common.extend(body, options));
     World.add(this.engine.world, newbody);
+
     return newbody;
-    // this.updateRealPosition();
   }
 
   removeBody(body: any) {

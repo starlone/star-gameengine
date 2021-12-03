@@ -1,4 +1,5 @@
 import { GameObject } from '../gameobject';
+import { IRigidBodyOptions } from '../options/rigidbody.options';
 import { PhysicsEngine } from './physicsengine';
 
 export class RigidBody {
@@ -6,8 +7,16 @@ export class RigidBody {
   body: any;
   physicEngine?: PhysicsEngine;
 
-  constructor(obj: GameObject) {
+  friction?: number;
+  restitution?: number;
+  density?: number;
+
+  constructor(obj: GameObject, options: IRigidBodyOptions) {
     this.parent = obj;
+
+    this.friction = options.friction;
+    this.restitution = options.friction;
+    this.density = options.density;
   }
 
   update() {
@@ -35,5 +44,13 @@ export class RigidBody {
     if (this.physicEngine) {
       this.physicEngine.setAngularVelocity(this.body, velocity);
     }
+  }
+
+  toJSON() {
+    return {
+      friction: this.friction,
+      restitution: this.restitution,
+      density: this.density,
+    };
   }
 }

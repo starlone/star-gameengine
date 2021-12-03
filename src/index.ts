@@ -6,6 +6,7 @@ import { ZoomInteraction } from './interactions/zoom.interaction';
 import { KeyboardHandler } from './keyboardhandler';
 import { IGameObjectOptions } from './options/gameobject.options';
 import { MeshRenderer } from './renderers/mesh.renderer';
+import { Renderer } from './renderers/renderer';
 import { Scene } from './scene';
 import { FollowObjectScript } from './scripts/followobject.script';
 import { FreeMoveScript } from './scripts/freemove.script';
@@ -22,6 +23,7 @@ export {
   KeyboardHandler,
   IGameObjectOptions,
   MeshRenderer,
+  Renderer,
   Scene,
   FollowObjectScript,
   FreeMoveScript,

@@ -9,7 +9,6 @@ export class Factory {
     var h = opt.h || 10;
 
     const isStatic = opt.static !== undefined ? opt.static : false;
-    const rigidBody = opt.hasRigidBody !== undefined ? opt.hasRigidBody : true;
 
     var vertices = [
       { x: -w / 2, y: -h / 2 },
@@ -22,13 +21,13 @@ export class Factory {
       name: opt.name || '',
       position: { x, y },
       static: isStatic,
-      hasRigidBody: rigidBody,
       renderer: {
         type: 'MeshRenderer',
         color: opt.color || 'blue',
       },
       vertices: vertices,
       angle: opt.angle,
+      rigidBody: opt.rigidBody,
     });
   }
 
@@ -39,7 +38,6 @@ export class Factory {
     var maxSides = opt.maxSides || 25;
 
     const isStatic = opt.static !== undefined ? opt.static : false;
-    const rigidBody = opt.hasRigidBody !== undefined ? opt.hasRigidBody : true;
 
     const vertices = Factory.createCircleVertices(radius, maxSides);
 
@@ -47,13 +45,13 @@ export class Factory {
       name: opt.name || '',
       position: { x, y },
       static: isStatic,
-      hasRigidBody: rigidBody,
       renderer: {
         type: 'MeshRenderer',
         color: opt.color || 'blue',
       },
       vertices: vertices,
       angle: opt.angle,
+      rigidBody: opt.rigidBody,
     });
   }
 
