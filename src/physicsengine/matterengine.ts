@@ -36,7 +36,6 @@ export class MatterEngine implements PhysicsEngine {
     if (obj.rigidBody?.density) {
       body.density = obj.rigidBody?.density;
     }
-    console.log(body);
     const newbody = Body.create(Common.extend(body, options));
     World.add(this.engine.world, newbody);
 

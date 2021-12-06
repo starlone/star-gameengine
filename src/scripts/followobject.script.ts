@@ -20,8 +20,7 @@ export class FollowObjectScript extends Script {
       this.target = engine.getScene().getObj(this.targetUid);
     }
     if (this.target) {
-      this.parent.position.x = this.target.position.x;
-      this.parent.position.y = this.target.position.y;
+      this.parent.position = this.target.position.clone();
     }
   }
 

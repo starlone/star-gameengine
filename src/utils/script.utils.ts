@@ -2,6 +2,7 @@ import { FollowObjectScript } from '../scripts/followobject.script';
 import { FreeMoveScript } from '../scripts/freemove.script';
 import { PlataformPlayerScript } from '../scripts/platformplayer.script';
 import { Script } from '../scripts/script';
+import { SmoothFollowObjectScript } from '../scripts/smoothfollowobject.script';
 
 export abstract class ScriptUtils {
   static parse(options: any): Script | undefined {
@@ -18,6 +19,10 @@ export abstract class ScriptUtils {
 
     if (options.type === 'FollowObjectScript') {
       return new FollowObjectScript(options);
+    }
+
+    if (options.type === 'SmoothFollowObjectScript') {
+      return new SmoothFollowObjectScript(options);
     }
 
     return undefined;

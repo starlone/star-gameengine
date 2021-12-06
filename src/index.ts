@@ -5,6 +5,7 @@ import { SelectObjectInteraction } from './interactions/selectobject.interection
 import { ZoomInteraction } from './interactions/zoom.interaction';
 import { KeyboardHandler } from './keyboardhandler';
 import { IGameObjectOptions } from './options/gameobject.options';
+import { Point } from './point';
 import { MeshRenderer } from './renderers/mesh.renderer';
 import { Renderer } from './renderers/renderer';
 import { Scene } from './scene';
@@ -12,6 +13,7 @@ import { FollowObjectScript } from './scripts/followobject.script';
 import { FreeMoveScript } from './scripts/freemove.script';
 import { PlataformPlayerScript } from './scripts/platformplayer.script';
 import { Script } from './scripts/script';
+import { SmoothFollowObjectScript } from './scripts/smoothfollowobject.script';
 import { StarEngine } from './starengine';
 
 export {
@@ -22,6 +24,7 @@ export {
   SelectObjectInteraction,
   KeyboardHandler,
   IGameObjectOptions,
+  Point,
   MeshRenderer,
   Renderer,
   Scene,
@@ -29,5 +32,6 @@ export {
   FreeMoveScript,
   PlataformPlayerScript,
   Script,
+  SmoothFollowObjectScript,
   StarEngine,
 };

@@ -36,6 +36,12 @@ export class Point {
     return this;
   }
 
+  multi(other: Point) {
+    this.x = this.x * other.x;
+    this.y = this.y * other.y;
+    return this;
+  }
+
   div(other: Point) {
     this.x = this.x / other.x;
     this.y = this.y / other.y;
@@ -46,6 +52,19 @@ export class Point {
     this.x = this.x * -1;
     this.y = this.y * -1;
     return this;
+  }
+
+  /**
+   * Calculates the linearly interpolated value of x between a and b
+   */
+
+  // Formula: a + x * (b - a)
+  static lerp(a: Point, b: Point, x: number) {
+    const ac = a.clone();
+    const bc = b.clone();
+    const xc = new Point(x, x);
+
+    return ac.sum(xc.multi(bc.sub(ac)));
   }
 
   clone() {
