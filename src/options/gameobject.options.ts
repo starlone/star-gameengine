@@ -12,4 +12,5 @@ export interface IGameObjectOptions {
   hasRenderer?: boolean;
   children?: IGameObjectOptions[];
   scripts?: any[];
+  hasCollision?: boolean;
 }

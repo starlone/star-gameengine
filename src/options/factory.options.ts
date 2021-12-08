@@ -16,4 +16,6 @@ export interface IFactoryOptions {
   color?: string;
 
   rigidBody?: IRigidBodyOptions;
+
+  hasCollision?: boolean;
 }

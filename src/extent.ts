@@ -38,6 +38,7 @@ export class Extent {
   move(vector: Point) {
     this.min.sum(vector);
     this.max.sum(vector);
+    return this;
   }
 
   contains(point: Point): boolean {
@@ -47,5 +48,24 @@ export class Extent {
       this.min.y <= point.y &&
       point.y <= this.max.y
     );
+  }
+
+  /**
+   * Determine if one extent intersects another.
+   * @param {Extent} other Other extent.
+   * @return {boolean} The two extents intersect.
+   * @api
+   */
+  intersects(other: Extent): boolean {
+    return (
+      this.min.x <= other.max.x &&
+      this.max.x >= other.min.x &&
+      this.min.y <= other.max.y &&
+      this.max.y >= other.min.y
+    );
+  }
+
+  clone() {
+    return new Extent(this.min.x, this.min.y, this.max.x, this.max.y);
   }
 }

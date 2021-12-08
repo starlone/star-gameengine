@@ -28,6 +28,7 @@ export class Factory {
       vertices: vertices,
       angle: opt.angle,
       rigidBody: opt.rigidBody,
+      hasCollision: opt.hasCollision,
     });
   }
 
@@ -52,6 +53,7 @@ export class Factory {
       vertices: vertices,
       angle: opt.angle,
       rigidBody: opt.rigidBody,
+      hasCollision: opt.hasCollision,
     });
   }
 

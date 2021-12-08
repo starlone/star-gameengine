@@ -22,6 +22,7 @@ export class GameObject {
   static: boolean;
   children: GameObject[] = [];
   parent?: GameObject;
+  hasCollision = false;
 
   constructor(options: IGameObjectOptions) {
     this.uid = options.uid || uuidv4();
@@ -30,6 +31,8 @@ export class GameObject {
     this.position.y = options.position.y;
     this.angle = options.angle || 0;
     this.static = options.static || false;
+
+    this.hasCollision = options.hasCollision || false;
 
     const vertices = options.vertices || [];
     this.vertices = vertices.map((point) => new Point(point.x, point.y));
@@ -136,9 +139,14 @@ export class GameObject {
   }
 
   getExtent(): Extent {
-    var pos = this.getRealPosition();
     const extent = Extent.createEmpty();
     extent.extendVectors(this.vertices);
+    return extent;
+  }
+
+  getRealExtent(): Extent {
+    const extent = this.getExtent();
+    var pos = this.getRealPosition();
     extent.move(pos);
     return extent;
   }

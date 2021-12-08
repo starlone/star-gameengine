@@ -2,6 +2,7 @@ import { Extent } from './extent';
 import { GameObject } from './gameobject';
 import { MatterEngine } from './physicsengine/matterengine';
 import { PhysicsEngine } from './physicsengine/physicsengine';
+import { SimpleCollisionEngine } from './physicsengine/simplecollisionengine';
 import { Point } from './point';
 import { GradientRenderer } from './renderers/gradient.renderer';
 import { Renderer } from './renderers/renderer';
@@ -12,6 +13,7 @@ export class Scene {
   objs: GameObject[] = [];
   renderer: Renderer = new GradientRenderer(this);
   physicEngine: PhysicsEngine = new MatterEngine();
+  collisionEngine = new SimpleCollisionEngine();
 
   constructor(options?: any) {
     options = options || {};
@@ -58,11 +60,15 @@ export class Scene {
       obj.rigidBody.body = body;
       obj.rigidBody.physicEngine = this.physicEngine;
     }
+    if (obj.hasCollision) {
+      this.collisionEngine.createBody(obj);
+    }
     this.objs.push(obj);
   }
 
   update(delta: number, correction: number, engine: StarEngine) {
     this.physicEngine.update(delta, correction);
+    this.collisionEngine.update();
     this.objs.forEach((obj) => obj.update(delta, correction, engine));
   }
 
@@ -70,7 +76,7 @@ export class Scene {
     var objs = this.objs;
     for (var i = objs.length - 1; i >= 0; i--) {
       var obj = objs[i];
-      if (obj.getExtent().contains(coordinate)) {
+      if (obj.getRealExtent().contains(coordinate)) {
         return obj;
       }
     }
