@@ -34,6 +34,7 @@ export class StarEngine {
   }
 
   stop(): void {
+    this.viewport.desactive();
     this.runner.stop();
   }
 

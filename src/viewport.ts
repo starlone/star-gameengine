@@ -42,6 +42,11 @@ export class ViewPort {
     this.activeInteractions();
   }
 
+  desactive() {
+    this.isActive = false;
+    this.desactiveInteractions();
+  }
+
   addInteraction(interaction: Interaction) {
     interaction.setParent(this);
     this.interactions.push(interaction);
@@ -51,6 +56,12 @@ export class ViewPort {
   activeInteractions() {
     for (const interaction of this.interactions) {
       interaction.active();
+    }
+  }
+
+  desactiveInteractions() {
+    for (const interaction of this.interactions) {
+      interaction.desactive();
     }
   }
 
