@@ -25,9 +25,15 @@ export class RigidBody {
     this.parent.angle = this.body.angle;
   }
 
-  setVelocity(x: number, y: any) {
+  setVelocity(x: number, y: number) {
     if (this.physicEngine) {
       this.physicEngine.setVelocity(this.body, { x, y });
+    }
+  }
+
+  setPosition(x: number, y: number) {
+    if (this.physicEngine) {
+      this.physicEngine.setPosition(this.body, { x, y });
     }
   }
 

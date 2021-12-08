@@ -46,9 +46,14 @@ export class MatterEngine implements PhysicsEngine {
     World.remove(this.engine.world, body);
   }
 
-  setVelocity(body: any, velocity: { x: number; y: any }) {
+  setVelocity(body: any, velocity: { x: number; y: number }) {
     Matter.Sleeping.set(body, false); // Wake up Object
     Matter.Body.setVelocity(body, velocity);
+  }
+
+  setPosition(body: any, velocity: { x: number; y: number }) {
+    Matter.Sleeping.set(body, false); // Wake up Object
+    Matter.Body.setPosition(body, velocity);
   }
 
   applyForce(

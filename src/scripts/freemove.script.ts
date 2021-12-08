@@ -10,6 +10,7 @@ export class FreeMoveScript extends Script {
   }
 
   update(delta: number, correction: number, engine: StarEngine): void {
+    if (!this.parent) return;
     let x = engine.getJoystick().getAxis('horizontal') || 0;
     let y = engine.getJoystick().getAxis('vertical') || 0;
     if (x) {
@@ -18,7 +19,11 @@ export class FreeMoveScript extends Script {
     if (y) {
       y *= this.speed * delta * correction;
     }
-    this.parent?.position.move(x, y);
+    if (x || y) {
+      const pos = this.parent.position;
+      pos.move(x, y);
+      this.parent.rigidBody?.setPosition(pos.x, pos.y);
+    }
   }
 
   toJSON(): object {
