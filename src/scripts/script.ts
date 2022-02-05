@@ -7,7 +7,7 @@ export abstract class Script {
   abstract update(delta: number, correction: number, engine: StarEngine): void;
 
   abstract toJSON(): object;
-  
+
   setParent(parent: GameObject) {
     this.parent = parent;
   }

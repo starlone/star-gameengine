@@ -72,10 +72,20 @@ export class Scene {
     this.objs.forEach((obj) => obj.update(delta, correction, engine));
   }
 
-  getObjectByCoordinate(coordinate: Point) {
-    var objs = this.objs;
+  getObjectByCoordinate(coordinate: Point): GameObject | undefined {
+    return this.getObjInListByCoordinate(this.objs, coordinate);
+  }
+
+  getObjInListByCoordinate(
+    objs: GameObject[],
+    coordinate: Point
+  ): GameObject | undefined {
     for (var i = objs.length - 1; i >= 0; i--) {
       var obj = objs[i];
+
+      const child = this.getObjInListByCoordinate(obj.children, coordinate);
+      if (child) return child;
+      
       if (obj.getRealExtent().contains(coordinate)) {
         return obj;
       }

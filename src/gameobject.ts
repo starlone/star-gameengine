@@ -152,7 +152,7 @@ export class GameObject {
   }
 
   getRealPosition(): Point {
-    var pos = this.position;
+    var pos = this.position.clone();
 
     var parent = this.parent;
 

@@ -17,7 +17,7 @@ export class MatterEngine implements PhysicsEngine {
       options.canRotate = true;
     }
 
-    var position = obj.getRealPosition();
+    const position = obj.getRealPosition();
 
     let body: any = {
       label: name,
