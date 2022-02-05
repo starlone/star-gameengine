@@ -4,6 +4,7 @@ import { PanInteraction } from './interactions/pan.interection';
 import { SelectObjectInteraction } from './interactions/selectobject.interection';
 import { ZoomInteraction } from './interactions/zoom.interaction';
 import { KeyboardHandler } from './keyboardhandler';
+import { IFactoryOptions } from './options/factory.options';
 import { IGameObjectOptions } from './options/gameobject.options';
 import { Point } from './point';
 import { MeshRenderer } from './renderers/mesh.renderer';
@@ -23,6 +24,7 @@ export {
   ZoomInteraction,
   SelectObjectInteraction,
   KeyboardHandler,
+  IFactoryOptions,
   IGameObjectOptions,
   Point,
   MeshRenderer,
