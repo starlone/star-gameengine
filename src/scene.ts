@@ -85,7 +85,7 @@ export class Scene {
 
       const child = this.getObjInListByCoordinate(obj.children, coordinate);
       if (child) return child;
-      
+
       if (obj.getRealExtent().contains(coordinate)) {
         return obj;
       }

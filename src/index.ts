@@ -1,3 +1,4 @@
+import { Extent } from './extent';
 import { Factory } from './factory';
 import { GameObject } from './gameobject';
 import { PanInteraction } from './interactions/pan.interection';
@@ -18,6 +19,7 @@ import { SmoothFollowObjectScript } from './scripts/smoothfollowobject.script';
 import { StarEngine } from './starengine';
 
 export {
+  Extent,
   Factory,
   GameObject,
   PanInteraction,

@@ -6,7 +6,7 @@ export class SimpleCollisionEngine {
 
   removeBody(body: any): void {
     const index = this.bodies.indexOf(body);
-    if (index != -1) this.bodies.splice(0, index);
+    if (index !== -1) this.bodies.splice(0, index);
   }
 
   createBody(obj: GameObject) {
