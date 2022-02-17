@@ -134,6 +134,13 @@ export class GameObject {
     script.setParent(this);
   }
 
+  removeChild(gameobject: GameObject) {
+    const pos = this.children.indexOf(gameobject);
+    if (pos != -1) {
+      this.children.splice(pos);
+    }
+  }
+
   isStatic(): boolean {
     return this.static;
   }

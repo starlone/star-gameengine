@@ -37,6 +37,7 @@ export class Factory {
     var y = opt.y || 0;
     const radius = opt.radius || 10;
     var maxSides = opt.maxSides || 25;
+    const angle = opt.angle || 0;
 
     const isStatic = opt.static !== undefined ? opt.static : false;
 
@@ -51,7 +52,7 @@ export class Factory {
         color: opt.color || 'blue',
       },
       vertices: vertices,
-      angle: opt.angle,
+      angle: angle,
       rigidBody: opt.rigidBody,
       hasCollision: opt.hasCollision,
     });
