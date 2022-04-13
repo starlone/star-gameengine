@@ -8,6 +8,7 @@ import { KeyboardHandler } from './keyboardhandler';
 import { IFactoryOptions } from './options/factory.options';
 import { IGameObjectOptions } from './options/gameobject.options';
 import { Point } from './point';
+import { GradientRenderer } from './renderers/gradient.renderer';
 import { MeshRenderer } from './renderers/mesh.renderer';
 import { Renderer } from './renderers/renderer';
 import { Scene } from './scene';
@@ -29,6 +30,7 @@ export {
   IFactoryOptions,
   IGameObjectOptions,
   Point,
+  GradientRenderer,
   MeshRenderer,
   Renderer,
   Scene,

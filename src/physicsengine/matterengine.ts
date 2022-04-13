@@ -19,10 +19,12 @@ export class MatterEngine implements PhysicsEngine {
 
     const position = obj.getRealPosition();
 
+    const vertices = obj.vertices.map((point) => point.clone()); //.sum(position));
+
     let body: any = {
       label: name,
       position: position.toJSON(),
-      vertices: obj.vertices,
+      vertices: vertices,
       angle: obj.angle,
       isStatic: obj.isStatic(),
     };

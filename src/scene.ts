@@ -11,7 +11,7 @@ import { StarEngine } from './starengine';
 export class Scene {
   camera: GameObject;
   objs: GameObject[] = [];
-  renderer: Renderer = new GradientRenderer(this);
+  renderer: Renderer = new GradientRenderer();
   physicEngine: PhysicsEngine = new MatterEngine();
   collisionEngine = new SimpleCollisionEngine();
 
@@ -64,6 +64,15 @@ export class Scene {
       this.collisionEngine.createBody(obj);
     }
     this.objs.push(obj);
+    obj.scene = this;
+  }
+
+  remove(obj: GameObject) {
+    obj.scene = undefined;
+    const pos = this.objs.indexOf(obj);
+    if (pos != -1) {
+      this.objs.splice(pos);
+    }
   }
 
   update(delta: number, correction: number, engine: StarEngine) {
@@ -91,6 +100,10 @@ export class Scene {
       }
     }
     return undefined;
+  }
+
+  setRenderer(renderer: Renderer) {
+    this.renderer = renderer;
   }
 
   clone(): Scene {

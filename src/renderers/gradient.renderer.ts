@@ -7,8 +7,8 @@ export class GradientRenderer extends Renderer {
 
   constructor(options: any = []) {
     super();
-    this.color1 = options.color || this.color1;
-    this.color2 = options.color || this.color2;
+    this.color1 = options.color1 || this.color1;
+    this.color2 = options.color2 || this.color2;
   }
 
   render(c: CanvasRenderingContext2D, extent: Extent): void {

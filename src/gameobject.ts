@@ -5,6 +5,7 @@ import { RigidBody } from './physicsengine/rigidbody';
 import { Point } from './point';
 import { MeshRenderer } from './renderers/mesh.renderer';
 import { Renderer } from './renderers/renderer';
+import { Scene } from './scene';
 import { Script } from './scripts/script';
 import { StarEngine } from './starengine';
 import { RendererUtils } from './utils/renderer.utils';
@@ -22,6 +23,7 @@ export class GameObject {
   static: boolean;
   children: GameObject[] = [];
   parent?: GameObject;
+  scene?: Scene;
   hasCollision = false;
 
   constructor(options: IGameObjectOptions) {
@@ -169,6 +171,18 @@ export class GameObject {
     }
 
     return pos;
+  }
+
+  destroy() {
+    for (const child of this.children) {
+      child.destroy();
+    }
+    this.children = [];
+    if (this.parent) {
+      this.parent.removeChild(this);
+    } else {
+      this.scene?.remove(this);
+    }
   }
 
   clone() {

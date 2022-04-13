@@ -1,5 +1,5 @@
+import { Point } from '..';
 import { Extent } from '../extent';
-import { Point } from '../point';
 import { Renderer } from './renderer';
 
 export class MeshRenderer extends Renderer {
@@ -25,6 +25,17 @@ export class MeshRenderer extends Renderer {
 
     const vertices: Point[] = this.parent.vertices;
 
+    // Backup
+    const lineWidthBkp = c.lineWidth;
+    const strokeStyleBkp = c.strokeStyle;
+    const fillStyleBkp = c.fillStyle;
+
+    // Apply Style
+    c.fillStyle = this.color;
+    c.lineWidth = this.lineWidth;
+    c.strokeStyle = this.strokeStyle;
+
+    // Draw
     c.beginPath();
     c.moveTo(vertices[0].x, vertices[0].y);
 
@@ -35,22 +46,14 @@ export class MeshRenderer extends Renderer {
     c.lineTo(vertices[0].x, vertices[0].y);
     c.closePath();
 
-    c.fillStyle = this.color;
-    if (this.strokeStyle) {
-      // Backup
-      const lineWidthBkp = c.lineWidth;
-      const strokeStyleBkp = c.strokeStyle;
-
-      c.lineWidth = this.lineWidth;
-      c.strokeStyle = this.strokeStyle;
-      c.stroke();
-
-      // Restore
-      c.lineWidth = lineWidthBkp;
-      c.strokeStyle = strokeStyleBkp;
-    }
+    if (this.strokeStyle) c.stroke();
 
     c.fill();
+
+    // Restore
+    c.lineWidth = lineWidthBkp;
+    c.strokeStyle = strokeStyleBkp;
+    c.fillStyle = fillStyleBkp;
   }
 
   clone(): Renderer {
